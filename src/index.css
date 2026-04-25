@@ -108,7 +108,7 @@ body::before {
   align-items: center;
   padding: 5.5rem 2rem 4rem;
   width: 100%;
-  max-width: 800px;
+  max-width: 700px;
   margin: 0 auto;
 }
 
@@ -475,4 +475,114 @@ p, .body-text {
   color: var(--ink-light);
   text-transform: uppercase;
   opacity: 0.7;
+}
+
+/* ── SKILLS GRID LAYOUT ── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3.5rem;
+  width: 100%;
+}
+
+.skill-category {
+  margin-bottom: 1rem;
+}
+
+.skill-category-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+  border-bottom: 1px solid var(--ink-faint);
+  padding-bottom: 0.5rem;
+}
+
+.skill-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--ink);
+  opacity: 0.9;
+}
+
+.skill-category-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.skill-tag {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.05rem;
+  color: var(--ink-mid);
+  background: var(--ink-faint);
+  padding: 0.2rem 0.8rem;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+  cursor: default;
+}
+
+.skill-tag:hover {
+  border-color: var(--ink-light);
+  color: var(--ink);
+  transform: translateY(-2px);
+}
+
+.soft-skills-block {
+  margin-top: 3.5rem;
+  width: 100%;
+}
+
+.soft-skills-list {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--ink-mid);
+  column-count: 2;
+  column-gap: 2rem;
+}
+
+@media (max-width: 600px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+  .soft-skills-list {
+    column-count: 1;
+  }
+}
+
+/* ── SKILL LOGO STYLES ── */
+.skill-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.8rem;
+}
+
+.skill-logo {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  filter: grayscale(1) brightness(1.2);
+  transition: filter 0.2s;
+}
+
+.skill-tag:hover .skill-logo {
+  filter: grayscale(0) brightness(1);
+}
+
+[data-theme='light'] .skill-logo {
+  filter: grayscale(1) brightness(0.5);
+}
+
+[data-theme='light'] .skill-tag:hover .skill-logo {
+  filter: grayscale(0) brightness(1);
 }

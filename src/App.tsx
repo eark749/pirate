@@ -3,6 +3,105 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 
 /**
+ * Robust Logo Resolver
+ * Uses clear SVGs and font-awesome/devicon equivalents where possible.
+ */
+const getSkillLogo = (name: string) => {
+  const n = name.toLowerCase().replace(/[^a-z0-9]/g, '');
+  
+  const mapping: Record<string, string> = {
+    // Languages
+    python: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
+    sql: 'https://www.svgrepo.com/show/374093/sql.svg',
+    r: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg',
+    cplusplus: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg',
+    cpp: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg',
+    rust: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg',
+    cypherquerylanguage: 'https://www.svgrepo.com/show/354113/neo4j.svg',
+    
+    // AI / ML
+    neuralnetworks: 'https://www.svgrepo.com/show/474744/brain.svg',
+    finetuning: 'https://www.svgrepo.com/show/435205/settings-fine-tune.svg',
+    llm: 'https://www.svgrepo.com/show/422204/ai-artificial-intelligence-machine-learning.svg',
+    rag: 'https://www.svgrepo.com/show/474744/brain.svg',
+    cnn: 'https://www.svgrepo.com/show/422204/ai-artificial-intelligence-machine-learning.svg',
+    rnn: 'https://www.svgrepo.com/show/422204/ai-artificial-intelligence-machine-learning.svg',
+    transformers: 'https://www.svgrepo.com/show/474744/brain.svg',
+    
+    // Frameworks
+    tensorflow: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg',
+    pytorch: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg',
+    keras: 'https://www.svgrepo.com/show/353950/keras.svg',
+    scikitlearn: 'https://www.svgrepo.com/show/354323/scikit-learn.svg',
+    langchain: 'https://www.svgrepo.com/show/422204/ai-artificial-intelligence-machine-learning.svg',
+    huggingface: 'https://huggingface.co/front/assets/huggingface_logo-noborder.svg',
+    fastapi: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg',
+    
+    // Data Tools
+    powerbi: 'https://www.svgrepo.com/show/354211/power-bi.svg',
+    tableau: 'https://www.svgrepo.com/show/354425/tableau.svg',
+    rstudio: 'https://www.svgrepo.com/show/354291/rstudio.svg',
+    excel: 'https://www.svgrepo.com/show/373815/excel.svg',
+    jupyter: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg',
+    weka: 'https://www.svgrepo.com/show/422204/ai-artificial-intelligence-machine-learning.svg',
+    pandas: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg',
+    
+    // Databases
+    postgresql: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
+    mysql: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
+    chromadb: 'https://www.svgrepo.com/show/474744/brain.svg',
+    vectordb: 'https://www.svgrepo.com/show/474744/brain.svg',
+    datawarehouse: 'https://www.svgrepo.com/show/353641/database.svg',
+    
+    // DevOps & Cloud
+    docker: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
+    git: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
+    aws: 'https://www.svgrepo.com/show/353393/aws.svg',
+    azure: 'https://www.svgrepo.com/show/353457/azure.svg',
+    apachehttpserver: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg',
+    postman: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg'
+  };
+
+  return mapping[n] || 'https://www.svgrepo.com/show/422204/ai-artificial-intelligence-machine-learning.svg';
+};
+
+/**
+ * Common Icons for Skills Categories
+ */
+const Icons = {
+  Languages: () => (
+    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="m5 8 6 6" /><path d="m4 14 6-6 2-3" /><path d="M2 5h12" /><path d="M7 2h1" /><path d="m22 22-5-10-5 10" /><path d="M14 18h6" />
+    </svg>
+  ),
+  AI: () => (
+    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2v10" /><path d="M18.4 6.6a9 9 0 1 1-12.77.04" />
+    </svg>
+  ),
+  Frameworks: () => (
+    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" /><polyline points="3.27 6.96 12 12.01 20.73 6.96" /><line x1="12" y1="22.08" x2="12" y2="12" />
+    </svg>
+  ),
+  Data: () => (
+    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21.21 15.89A10 10 0 1 1 8 2.83" /><path d="M22 12A10 10 0 0 0 12 2v10z" />
+    </svg>
+  ),
+  Databases: () => (
+    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <ellipse cx="12" cy="5" rx="9" ry="3" /><path d="M3 5V19A9 3 0 0 0 21 19V5" /><path d="M3 12A9 3 0 0 0 21 12" />
+    </svg>
+  ),
+  Cloud: () => (
+    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M17.5 19a5.5 5.5 0 0 1-4.7-2.8" /><path d="M20.9 14.1A6.4 6.4 0 0 0 14 8a6 6 0 0 0-11.2 3.6A6 6 0 0 0 6 22h11.5a4.5 4.5 0 0 0 0-9Z" />
+    </svg>
+  )
+};
+
+/**
  * Common TopBar component for internal pages
  */
 function TopBar({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) {
@@ -34,7 +133,7 @@ function Home({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }
   const navLinks = [
     { label: 'About', num: 'I', path: '/about' },
     { label: 'Projects', num: 'II', path: '/projects' },
-    { label: 'Skills', num: 'III', path: '#' },
+    { label: 'Skills', num: 'III', path: '/skills' },
     { label: 'Work', num: 'IV', path: '#' },
     { label: 'Resume', num: 'V', path: '#' },
     { label: 'Contact', num: 'VI', path: '#' },
@@ -223,6 +322,90 @@ function Projects({ theme, toggleTheme }: { theme: string; toggleTheme: () => vo
   );
 }
 
+function Skills({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) {
+  const skillCategories = [
+    {
+      title: 'Languages',
+      icon: <Icons.Languages />,
+      skills: ['Python', 'SQL', 'R', 'C++', 'Rust', 'Cypher Query Language']
+    },
+    {
+      title: 'AI / ML',
+      icon: <Icons.AI />,
+      skills: ['Neural Networks', 'Fine-tuning', 'LLM', 'RAG', 'CNN', 'RNN', 'Transformers']
+    },
+    {
+      title: 'Frameworks',
+      icon: <Icons.Frameworks />,
+      skills: ['TensorFlow', 'PyTorch', 'Keras', 'Scikit-learn', 'LangChain', 'Hugging Face', 'FastAPI']
+    },
+    {
+      title: 'Data Tools',
+      icon: <Icons.Data />,
+      skills: ['Power BI', 'Tableau', 'RStudio', 'Excel', 'Jupyter', 'WEKA', 'Pandas']
+    },
+    {
+      title: 'Databases',
+      icon: <Icons.Databases />,
+      skills: ['PostgreSQL', 'MySQL', 'ChromaDB', 'Vector DB', 'Data Warehouse']
+    },
+    {
+      title: 'DevOps & Cloud',
+      icon: <Icons.Cloud />,
+      skills: ['Docker', 'Git', 'AWS', 'Azure', 'Apache HTTP Server', 'Postman']
+    }
+  ];
+
+  const softSkills = ['Leadership', 'Communication', 'Critical Thinking', 'Problem Solving', 'Teamwork', 'Time Management'];
+
+  return (
+    <div className="page">
+      <TopBar theme={theme} toggleTheme={toggleTheme} />
+      
+      <header className="section-header">
+        <div className="section-numeral">Section III</div>
+        <h2 className="section-title">Skills</h2>
+        <div className="section-rule"></div>
+      </header>
+
+      <div className="skills-grid">
+        {skillCategories.map((cat, index) => (
+          <div key={index} className="skill-category">
+            <div className="skill-category-header">
+              {cat.icon}
+              <span className="skill-category-title">{cat.title}</span>
+            </div>
+            <div className="skill-list">
+              {cat.skills.map((skill, i) => {
+                const logo = getSkillLogo(skill);
+                return (
+                  <span key={i} className="skill-tag">
+                    <img src={logo} className="skill-logo" alt={skill} />
+                    {skill}
+                  </span>
+                );
+              })}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="soft-skills-block">
+        <div className="block-label">Soft Skills</div>
+        <div className="soft-skills-list">
+          {softSkills.map((skill, index) => (
+            <div key={index} style={{ marginBottom: '0.4rem' }}>{skill}</div>
+          ))}
+        </div>
+      </div>
+
+      <footer className="page-footer">
+        Fin. v. XIX
+      </footer>
+    </div>
+  );
+}
+
 function App() {
   const [theme, setTheme] = useState('dark');
 
@@ -240,6 +423,7 @@ function App() {
         <Route path="/" element={<Home theme={theme} toggleTheme={toggleTheme} />} />
         <Route path="/about" element={<About theme={theme} toggleTheme={toggleTheme} />} />
         <Route path="/projects" element={<Projects theme={theme} toggleTheme={toggleTheme} />} />
+        <Route path="/skills" element={<Skills theme={theme} toggleTheme={toggleTheme} />} />
       </Routes>
     </Router>
   );
