@@ -103,7 +103,7 @@ function Home({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }
     { label: 'Projects', num: 'II', path: '/projects' },
     { label: 'Skills', num: 'III', path: '/skills' },
     { label: 'Experience', num: 'IV', path: '/experience' },
-    { label: 'Resume', num: 'V', path: '/resume' },
+    { label: 'Resume', num: 'V', path: '/resume', external: true },
     { label: 'Contact', num: 'VI', path: '/contact' },
   ];
 
@@ -117,11 +117,19 @@ function Home({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }
 
       <nav>
         {navLinks.map((link) => (
-          <Link key={link.label} to={link.path}>
-            <span className="label">{link.label}</span>
-            <span className="dots"></span>
-            <span className="numeral">{link.num}</span>
-          </Link>
+          link.external ? (
+            <a key={link.label} href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+              <span className="label">{link.label}</span>
+              <span className="dots"></span>
+              <span className="numeral">{link.num}</span>
+            </a>
+          ) : (
+            <Link key={link.label} to={link.path}>
+              <span className="label">{link.label}</span>
+              <span className="dots"></span>
+              <span className="numeral">{link.num}</span>
+            </Link>
+          )
         ))}
       </nav>
 
@@ -159,22 +167,49 @@ function About({ theme, toggleTheme }: { theme: string; toggleTheme: () => void 
       <div className="content-block">
         <div className="block-label">Biography</div>
         <div className="bio-intro">
-          <div className="profile-frame"><img src="/profile.png" alt="Vansh Soni" /></div>
+          <div className="profile-frame">
+            <img src="/profile.png" alt="Vansh Soni" />
+          </div>
           <div className="bio-text-primary">
-            <p><span className="drop-cap">A</span>pplied <span className="highlight-text">AI Engineer</span> specializing in developing and deploying end-to-end AI/ML and custom solutions.</p>
+            <p>
+              <span className="drop-cap">A</span>pplied <span className="highlight-text">AI Engineer</span> specializing in developing and deploying end-to-end AI/ML and custom solutions. 
+              Expertise includes LLMs (RAG, Fine-tuning), Deep Learning (CNN, RNN, Transformers), and cloud platforms like AWS and Azure.
+            </p>
           </div>
         </div>
         <div className="block-label">Expertise</div>
-        <p>Proficient in key agent and orchestration frameworks, including LangChain, LlamaIndex, Multiple Agent Development Kit (ADK), and CrewAI. Proven track record of delivering high-impact systems.</p>
+        <p>
+          Proficient in key agent and orchestration frameworks, including LangChain, LlamaIndex, Multiple Agent Development Kit (ADK), and CrewAI. 
+          Proven track record of delivering high-impact systems, such as HR automation bots and production-ready RAG Q&A systems, 
+          utilizing Python and FastAPI for scalable AI agent orchestration.
+        </p>
         <div className="block-label">Education</div>
         <div className="edu-item">
-          <div className="edu-main"><span className="edu-org">United Institute of Technology</span><span className="edu-date">Sep 2022 – Apr 2026</span></div>
+          <div className="edu-main">
+            <span className="edu-org">United Institute of Technology</span>
+            <span className="edu-date">Sep 2022 – Apr 2026</span>
+          </div>
           <div className="edu-title">Bachelor of Science in AI/ML</div>
+          <div className="edu-meta">
+            <span>Gandhinagar, India</span>
+            <span>GPA: 7.5</span>
+          </div>
+          <div className="edu-details">
+            <strong>Courses</strong> AI, Machine Learning, Networking, Cloud Computing, Databases, Operating Systems, Data Structures
+          </div>
         </div>
         <div className="block-label">Connect</div>
         <div className="contact-row">
           <span className="contact-label">Email</span>
           <a href="mailto:vanshsoniofficial@gmail.com" className="contact-value">vanshsoniofficial@gmail.com</a>
+        </div>
+        <div className="contact-row">
+          <span className="contact-label">Mobile</span>
+          <a href="tel:+919104039861" className="contact-value">+91 910 403 9861</a>
+        </div>
+        <div className="contact-row">
+          <span className="contact-label">GitHub</span>
+          <a href="https://github.com/eark749" target="_blank" rel="noopener noreferrer" className="contact-value">github.com/eark749</a>
         </div>
       </div>
       <footer className="page-footer">Fin. v. XIX</footer>
@@ -261,11 +296,11 @@ function Contact({ theme, toggleTheme }: { theme: string; toggleTheme: () => voi
 
 function Experience({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) {
   const experiences = [
-    { company: 'Dealberg', tagline: 'AI Engineering Leadership', date: 'December 2025 - Present', pos: 'Joint AI lead', loc: 'Bangalore, On-Site', ind: 'AI & Automation', desc: 'I design, build, and deploy AI-powered systems and automation tools.' },
+    { company: 'Dealberg', tagline: 'AI Engineering Leadership', date: 'December 2025 - Present', pos: 'Joint AI lead', loc: 'Bangalore, On-Site', ind: 'AI & Automation', desc: 'I design, build, and deploy AI-powered systems and automation tools—handling backend architecture, integrations, and client-facing product delivery end-to-end.' },
     { company: 'Rysysth technologies', tagline: 'Scalable AI Applications', date: 'July 2025 - December 2025', pos: 'Applied AI Engineer', loc: 'Ahmedabad, Hybrid', ind: 'AI Solutions', desc: 'Building end-to-end AI powered application for clients based on their needs.' },
-    { company: 'Zensible', tagline: 'Automated AI Agents', date: 'April 2025 - July 2025', pos: 'AI Engineer', loc: 'Bangalore, Hybrid', ind: 'Product Engineering', desc: 'Built AI applications delivering business value.' },
-    { company: 'Amaze Inc', tagline: 'Strategic AI Architecture', date: 'January 2025 - April 2025', pos: 'AI Consultant', loc: 'Bangalore, On-Site', ind: 'Consultancy', desc: 'Transformed complex datasets into strategic insights.' },
-    { company: 'Brand Shark', tagline: 'Data Insight Delivery', date: 'November 2024 - January 2025', pos: 'AI Engineer Intern', loc: 'Bangalore, On-Site', ind: 'Data Engineering', desc: 'Analyzed and visualized data for actionable insights.' }
+    { company: 'Zensible', tagline: 'Automated AI Agents', date: 'April 2025 - July 2025', pos: 'AI Engineer', loc: 'Bangalore, Hybrid', ind: 'Product Engineering', desc: 'Built AI applications delivering business value; Created HRMS bot for HR automation and employee chat-based queries.' },
+    { company: 'Amaze Inc', tagline: 'Strategic AI Architecture', date: 'January 2025 - April 2025', pos: 'AI Consultant', loc: 'Bangalore, On-Site', ind: 'Consultancy', desc: 'Transformed complex datasets into strategic insights and architected custom AI solutions for data-driven decisions.' },
+    { company: 'Brand Shark', tagline: 'Data Insight Delivery', date: 'November 2024 - January 2025', pos: 'AI Engineer Intern', loc: 'Bangalore, On-Site', ind: 'Data Engineering', desc: 'Analyzed and visualized data, delivered actionable insights to support business decisions.' }
   ];
   const [activeIndex, setActiveIndex] = useState<number>(-1);
   useEffect(() => {
@@ -301,32 +336,36 @@ function Experience({ theme, toggleTheme }: { theme: string; toggleTheme: () => 
   );
 }
 
-function Resume({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) {
-  return (
-    <div className="page">
-      <TopBar theme={theme} toggleTheme={toggleTheme} />
-      <header className="section-header"><div className="section-numeral">Section V</div><h2 className="section-title">Resume</h2><div className="section-rule"></div></header>
-      <div className="resume-scroll-wrapper">
-        <div className="scroll-top-roller"></div>
-        <div className="scroll-content-paper" style={{ padding: '2rem 1.5rem', background: '#fff' }}>
-          <iframe src="/resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" style={{ width: '100%', height: '800px', border: 'none', borderRadius: '2px', boxShadow: '0 0 20px rgba(0,0,0,0.1)' }} title="Vansh Soni Resume" />
-        </div>
-      </div>
-      <div className="resume-actions">
-        <a href="/resume.pdf" download="Vansh_Soni_Resume.pdf" className="resume-btn">Download PDF</a>
-        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="resume-btn">Open Fullscreen</a>
-      </div>
-      <footer className="page-footer">Fin. v. XIX</footer>
-    </div>
-  );
-}
-
 function Projects({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) {
   const projectList = [
-    { name: 'LiveKit Voice Agents', url: 'github.com/eark749/voice-agents', img: '/proj-voice.png', desc: 'Production-grade real-time voice AI system...', tech: ['WebRTC', 'Python', 'FastAPI', 'LLM', 'VAD'] },
-    { name: 'SmartAssist', url: 'github.com/eark749/smartassist', img: '/proj-rag.png', desc: 'Enterprise-scale RAG system on AWS...', tech: ['AWS', 'Bedrock', 'OpenSearch', 'Docker', 'RAG'] },
-    { name: 'HR AI', url: 'github.com/eark749/hr-ai', img: '/proj-hr.png', desc: 'Full-stack AI-powered HR platform...', tech: ['React', 'WebSocket', 'FastAPI', 'PostgreSQL', 'LangChain'] },
-    { name: 'Medi', url: 'github.com/eark749/medi', img: '/proj-medi.png', desc: 'Scalable medical AI backend...', tech: ['Azure', 'Medical AI', 'Python', 'LLM Agents', 'HIPAA'] }
+    {
+      name: 'LiveKit Voice Agents',
+      url: 'github.com/eark749/voice-agents',
+      img: '/proj-voice.png',
+      desc: 'Production-grade real-time voice AI system built on WebRTC (UDP) achieving sub-500ms latency using VAD + semantic turn detection, preemptive LLM generation, and optimized STT → LLM → TTS streaming pipeline.',
+      tech: ['WebRTC', 'Python', 'FastAPI', 'LLM', 'VAD']
+    },
+    {
+      name: 'SmartAssist',
+      url: 'github.com/eark749/smartassist',
+      img: '/proj-rag.png',
+      desc: 'Enterprise-scale RAG system on AWS leveraging Textract, OpenSearch embeddings, and Bedrock (Nova Pro), with ECS auto-scaling, CI/CD pipelines, and IAM-secured microservices architecture.',
+      tech: ['AWS', 'Bedrock', 'OpenSearch', 'Docker', 'RAG']
+    },
+    {
+      name: 'HR AI',
+      url: 'github.com/eark749/hr-ai',
+      img: '/proj-hr.png',
+      desc: 'Full-stack AI-powered HR platform with context-aware chatbot, multi-session memory, and real-time WebSocket streaming, enabling personalized employee workflows like leave, attendance, and payroll queries.',
+      tech: ['React', 'WebSocket', 'FastAPI', 'PostgreSQL', 'LangChain']
+    },
+    {
+      name: 'Medi',
+      url: 'github.com/eark749/medi',
+      img: '/proj-medi.png',
+      desc: 'Scalable medical AI backend integrating LLM-driven QA agents, secure document pipelines, and Azure services (Cognitive, Blob, DB) for compliant healthcare data handling and intelligent retrieval.',
+      tech: ['Azure', 'Medical AI', 'Python', 'LLM Agents', 'HIPAA']
+    }
   ];
   return (
     <div className="page">
@@ -381,7 +420,6 @@ function App() {
         <Route path="/projects" element={<Projects theme={theme} toggleTheme={toggleTheme} />} />
         <Route path="/skills" element={<Skills theme={theme} toggleTheme={toggleTheme} />} />
         <Route path="/experience" element={<Experience theme={theme} toggleTheme={toggleTheme} />} />
-        <Route path="/resume" element={<Resume theme={theme} toggleTheme={toggleTheme} />} />
         <Route path="/contact" element={<Contact theme={theme} toggleTheme={toggleTheme} />} />
       </Routes>
     </Router>
