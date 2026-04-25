@@ -1,16 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 
 /**
- * Robust Logo Resolver
- * Uses clear SVGs and font-awesome/devicon equivalents where possible.
+ * Utility to get SVG-based logo for specific skills
  */
 const getSkillLogo = (name: string) => {
   const n = name.toLowerCase().replace(/[^a-z0-9]/g, '');
-  
   const mapping: Record<string, string> = {
-    // Languages
     python: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
     sql: 'https://www.svgrepo.com/show/374093/sql.svg',
     r: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg',
@@ -18,42 +15,20 @@ const getSkillLogo = (name: string) => {
     cpp: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg',
     rust: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg',
     cypherquerylanguage: 'https://www.svgrepo.com/show/354113/neo4j.svg',
-    
-    // AI / ML
-    neuralnetworks: 'https://www.svgrepo.com/show/474744/brain.svg',
-    finetuning: 'https://www.svgrepo.com/show/435205/settings-fine-tune.svg',
-    llm: 'https://www.svgrepo.com/show/422204/ai-artificial-intelligence-machine-learning.svg',
-    rag: 'https://www.svgrepo.com/show/474744/brain.svg',
-    cnn: 'https://www.svgrepo.com/show/422204/ai-artificial-intelligence-machine-learning.svg',
-    rnn: 'https://www.svgrepo.com/show/422204/ai-artificial-intelligence-machine-learning.svg',
-    transformers: 'https://www.svgrepo.com/show/474744/brain.svg',
-    
-    // Frameworks
     tensorflow: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg',
     pytorch: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg',
     keras: 'https://www.svgrepo.com/show/353950/keras.svg',
     scikitlearn: 'https://www.svgrepo.com/show/354323/scikit-learn.svg',
-    langchain: 'https://www.svgrepo.com/show/422204/ai-artificial-intelligence-machine-learning.svg',
     huggingface: 'https://huggingface.co/front/assets/huggingface_logo-noborder.svg',
     fastapi: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg',
-    
-    // Data Tools
     powerbi: 'https://www.svgrepo.com/show/354211/power-bi.svg',
     tableau: 'https://www.svgrepo.com/show/354425/tableau.svg',
     rstudio: 'https://www.svgrepo.com/show/354291/rstudio.svg',
     excel: 'https://www.svgrepo.com/show/373815/excel.svg',
     jupyter: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg',
-    weka: 'https://www.svgrepo.com/show/422204/ai-artificial-intelligence-machine-learning.svg',
     pandas: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg',
-    
-    // Databases
     postgresql: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
     mysql: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
-    chromadb: 'https://www.svgrepo.com/show/474744/brain.svg',
-    vectordb: 'https://www.svgrepo.com/show/474744/brain.svg',
-    datawarehouse: 'https://www.svgrepo.com/show/353641/database.svg',
-    
-    // DevOps & Cloud
     docker: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
     git: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
     aws: 'https://www.svgrepo.com/show/353393/aws.svg',
@@ -61,13 +36,9 @@ const getSkillLogo = (name: string) => {
     apachehttpserver: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg',
     postman: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg'
   };
-
   return mapping[n] || 'https://www.svgrepo.com/show/422204/ai-artificial-intelligence-machine-learning.svg';
 };
 
-/**
- * Common Icons for Skills Categories
- */
 const Icons = {
   Languages: () => (
     <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -101,9 +72,6 @@ const Icons = {
   )
 };
 
-/**
- * Common TopBar component for internal pages
- */
 function TopBar({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) {
   return (
     <div className="topbar">
@@ -134,8 +102,8 @@ function Home({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }
     { label: 'About', num: 'I', path: '/about' },
     { label: 'Projects', num: 'II', path: '/projects' },
     { label: 'Skills', num: 'III', path: '/skills' },
-    { label: 'Work', num: 'IV', path: '#' },
-    { label: 'Resume', num: 'V', path: '#' },
+    { label: 'Experience', num: 'IV', path: '/experience' },
+    { label: 'Resume', num: 'V', path: '/resume' },
     { label: 'Contact', num: 'VI', path: '#' },
   ];
 
@@ -253,6 +221,126 @@ function About({ theme, toggleTheme }: { theme: string; toggleTheme: () => void 
   );
 }
 
+function Experience({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) {
+  const experiences = [
+    {
+      company: 'Dealberg',
+      tagline: 'AI Engineering Leadership',
+      date: 'December 2025 - Present',
+      pos: 'Joint AI lead',
+      loc: 'Bangalore, On-Site',
+      ind: 'AI & Automation',
+      desc: 'I design, build, and deploy AI-powered systems and automation tools—handling backend architecture, integrations, and client-facing product delivery end-to-end.'
+    },
+    {
+      company: 'Rysysth technologies',
+      tagline: 'Scalable AI Applications',
+      date: 'July 2025 - December 2025',
+      pos: 'Applied AI Engineer',
+      loc: 'Ahmedabad, Hybrid',
+      ind: 'AI Solutions',
+      desc: 'Building end-to-end AI powered application for clients based on their needs.'
+    },
+    {
+      company: 'Zensible',
+      tagline: 'Automated AI Agents',
+      date: 'April 2025 - July 2025',
+      pos: 'AI Engineer',
+      loc: 'Bangalore, Hybrid',
+      ind: 'Product Engineering',
+      desc: 'Built AI applications delivering business value; Created HRMS bot for HR automation and employee chat-based queries.'
+    },
+    {
+      company: 'Amaze Inc',
+      tagline: 'Strategic AI Architecture',
+      date: 'January 2025 - April 2025',
+      pos: 'AI Consultant',
+      loc: 'Bangalore, On-Site',
+      ind: 'Consultancy',
+      desc: 'Transformed complex datasets into strategic insights and architected custom AI solutions for data-driven decisions.'
+    },
+    {
+      company: 'Brand Shark',
+      tagline: 'Data Insight Delivery',
+      date: 'November 2024 - January 2025',
+      pos: 'AI Engineer Intern',
+      loc: 'Bangalore, On-Site',
+      ind: 'Data Engineering',
+      desc: 'Analyzed and visualized data, delivered actionable insights to support business decisions.'
+    }
+  ];
+
+  const [activeIndex, setActiveIndex] = useState<number>(-1);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const index = parseInt(entry.target.getAttribute('data-index') || '0');
+        if (entry.isIntersecting) {
+          setActiveIndex(index);
+        } else if (activeIndex === index) {
+          setActiveIndex(-1);
+        }
+      });
+    }, { 
+      threshold: 0.5,
+      rootMargin: '-20% 0px -20% 0px' 
+    });
+
+    const items = document.querySelectorAll('.experience-item');
+    items.forEach(item => observer.observe(item));
+    return () => observer.disconnect();
+  }, [activeIndex]);
+
+  return (
+    <div className="page">
+      <TopBar theme={theme} toggleTheme={toggleTheme} />
+      <header className="section-header">
+        <div className="section-numeral">Section IV</div>
+        <h2 className="section-title">Experience</h2>
+        <div className="section-rule"></div>
+      </header>
+      <div className="timeline">
+        {experiences.map((exp, index) => (
+          <div key={index} data-index={index} className={`experience-item ${activeIndex === index ? 'active' : ''}`}>
+            <div className="exp-date-range">{exp.date}</div>
+            <div className="exp-company">{exp.company}</div>
+            <div className="exp-tagline">{exp.tagline}</div>
+            <div className="exp-info-grid">
+              <div><div className="exp-info-label">Position</div><div className="exp-info-value">{exp.pos}</div></div>
+              <div><div className="exp-info-label">Location</div><div className="exp-info-value">{exp.loc}</div></div>
+              <div><div className="exp-info-label">Industry</div><div className="exp-info-value">{exp.ind}</div></div>
+            </div>
+            <p className="exp-desc">{exp.desc}</p>
+          </div>
+        ))}
+      </div>
+      <footer className="page-footer">Fin. v. XIX</footer>
+    </div>
+  );
+}
+
+function Resume({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) {
+  return (
+    <div className="page">
+      <TopBar theme={theme} toggleTheme={toggleTheme} />
+      <header className="section-header">
+        <div className="section-numeral">Section V</div>
+        <h2 className="section-title">Resume</h2>
+        <div className="section-rule"></div>
+      </header>
+      <div className="resume-container">
+        <iframe src="/resume.pdf#toolbar=0&navpanes=0&scrollbar=0" className="resume-viewer" title="Vansh Soni Resume" />
+      </div>
+      <div className="resume-actions">
+        <a href="/resume.pdf" download="Vansh_Soni_Resume.pdf" className="resume-btn">Download PDF</a>
+        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="resume-btn">Open Fullscreen</a>
+      </div>
+      <footer className="page-footer">Fin. v. XIX</footer>
+    </div>
+  );
+}
+
 function Projects({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) {
   const projectList = [
     {
@@ -288,93 +376,51 @@ function Projects({ theme, toggleTheme }: { theme: string; toggleTheme: () => vo
   return (
     <div className="page">
       <TopBar theme={theme} toggleTheme={toggleTheme} />
-      
       <header className="section-header">
         <div className="section-numeral">Section II</div>
         <h2 className="section-title">Projects</h2>
         <div className="section-rule"></div>
       </header>
-
       <div className="content-block">
         {projectList.map((project, index) => (
           <div key={index} className="project-card">
-            <div className="project-visual">
-              <img src={project.img} alt={project.name} />
-            </div>
+            <div className="project-visual"><img src={project.img} alt={project.name} /></div>
             <div className="project-header">
               <span className="project-name">{project.name}</span>
               <a href={`https://${project.url}`} target="_blank" rel="noopener noreferrer" className="project-link">{project.url}</a>
             </div>
             <p className="project-description">{project.desc}</p>
-            <div className="project-tech">
-              {project.tech.map((t, i) => (
-                <span key={i} className="tech-tag">{t}</span>
-              ))}
-            </div>
+            <div className="project-tech">{project.tech.map((t, i) => (<span key={i} className="tech-tag">{t}</span>))}</div>
           </div>
         ))}
       </div>
-
-      <footer className="page-footer">
-        Fin. v. XIX
-      </footer>
+      <footer className="page-footer">Fin. v. XIX</footer>
     </div>
   );
 }
 
 function Skills({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) {
   const skillCategories = [
-    {
-      title: 'Languages',
-      icon: <Icons.Languages />,
-      skills: ['Python', 'SQL', 'R', 'C++', 'Rust', 'Cypher Query Language']
-    },
-    {
-      title: 'AI / ML',
-      icon: <Icons.AI />,
-      skills: ['Neural Networks', 'Fine-tuning', 'LLM', 'RAG', 'CNN', 'RNN', 'Transformers']
-    },
-    {
-      title: 'Frameworks',
-      icon: <Icons.Frameworks />,
-      skills: ['TensorFlow', 'PyTorch', 'Keras', 'Scikit-learn', 'LangChain', 'Hugging Face', 'FastAPI']
-    },
-    {
-      title: 'Data Tools',
-      icon: <Icons.Data />,
-      skills: ['Power BI', 'Tableau', 'RStudio', 'Excel', 'Jupyter', 'WEKA', 'Pandas']
-    },
-    {
-      title: 'Databases',
-      icon: <Icons.Databases />,
-      skills: ['PostgreSQL', 'MySQL', 'ChromaDB', 'Vector DB', 'Data Warehouse']
-    },
-    {
-      title: 'DevOps & Cloud',
-      icon: <Icons.Cloud />,
-      skills: ['Docker', 'Git', 'AWS', 'Azure', 'Apache HTTP Server', 'Postman']
-    }
+    { title: 'Languages', icon: <Icons.Languages />, skills: ['Python', 'SQL', 'R', 'C++', 'Rust', 'Cypher Query Language'] },
+    { title: 'AI / ML', icon: <Icons.AI />, skills: ['Neural Networks', 'Fine-tuning', 'LLM', 'RAG', 'CNN', 'RNN', 'Transformers'] },
+    { title: 'Frameworks', icon: <Icons.Frameworks />, skills: ['TensorFlow', 'PyTorch', 'Keras', 'Scikit-learn', 'LangChain', 'Hugging Face', 'FastAPI'] },
+    { title: 'Data Tools', icon: <Icons.Data />, skills: ['Power BI', 'Tableau', 'RStudio', 'Excel', 'Jupyter', 'WEKA', 'Pandas'] },
+    { title: 'Databases', icon: <Icons.Databases />, skills: ['PostgreSQL', 'MySQL', 'ChromaDB', 'Vector DB', 'Data Warehouse'] },
+    { title: 'DevOps & Cloud', icon: <Icons.Cloud />, skills: ['Docker', 'Git', 'AWS', 'Azure', 'Apache HTTP Server', 'Postman'] }
   ];
-
   const softSkills = ['Leadership', 'Communication', 'Critical Thinking', 'Problem Solving', 'Teamwork', 'Time Management'];
-
   return (
     <div className="page">
       <TopBar theme={theme} toggleTheme={toggleTheme} />
-      
       <header className="section-header">
         <div className="section-numeral">Section III</div>
         <h2 className="section-title">Skills</h2>
         <div className="section-rule"></div>
       </header>
-
       <div className="skills-grid">
         {skillCategories.map((cat, index) => (
           <div key={index} className="skill-category">
-            <div className="skill-category-header">
-              {cat.icon}
-              <span className="skill-category-title">{cat.title}</span>
-            </div>
+            <div className="skill-category-header">{cat.icon}<span className="skill-category-title">{cat.title}</span></div>
             <div className="skill-list">
               {cat.skills.map((skill, i) => {
                 const logo = getSkillLogo(skill);
@@ -389,34 +435,19 @@ function Skills({ theme, toggleTheme }: { theme: string; toggleTheme: () => void
           </div>
         ))}
       </div>
-
       <div className="soft-skills-block">
         <div className="block-label">Soft Skills</div>
-        <div className="soft-skills-list">
-          {softSkills.map((skill, index) => (
-            <div key={index} style={{ marginBottom: '0.4rem' }}>{skill}</div>
-          ))}
-        </div>
+        <div className="soft-skills-list">{softSkills.map((skill, index) => (<div key={index} style={{ marginBottom: '0.4rem' }}>{skill}</div>))}</div>
       </div>
-
-      <footer className="page-footer">
-        Fin. v. XIX
-      </footer>
+      <footer className="page-footer">Fin. v. XIX</footer>
     </div>
   );
 }
 
 function App() {
   const [theme, setTheme] = useState('dark');
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
-  };
-
+  useEffect(() => { document.documentElement.setAttribute('data-theme', theme); }, [theme]);
+  const toggleTheme = () => { setTheme(theme === 'dark' ? 'light' : 'dark'); };
   return (
     <Router>
       <Routes>
@@ -424,6 +455,8 @@ function App() {
         <Route path="/about" element={<About theme={theme} toggleTheme={toggleTheme} />} />
         <Route path="/projects" element={<Projects theme={theme} toggleTheme={toggleTheme} />} />
         <Route path="/skills" element={<Skills theme={theme} toggleTheme={toggleTheme} />} />
+        <Route path="/experience" element={<Experience theme={theme} toggleTheme={toggleTheme} />} />
+        <Route path="/resume" element={<Resume theme={theme} toggleTheme={toggleTheme} />} />
       </Routes>
     </Router>
   );
