@@ -93,10 +93,18 @@ function About({ theme, toggleTheme }: { theme: string; toggleTheme: () => void 
 
       <div className="content-block">
         <div className="block-label">Biography</div>
-        <p>
-          Applied AI Engineer specializing in developing and deploying end-to-end AI/ML and custom solutions. 
-          Expertise includes LLMs (RAG, Fine-tuning), Deep Learning (CNN, RNN, Transformers), and cloud platforms like AWS and Azure.
-        </p>
+        
+        <div className="bio-intro">
+          <div className="profile-frame">
+            <img src="/profile.png" alt="Vansh Soni" />
+          </div>
+          <div className="bio-text-primary">
+            <p>
+              <span className="drop-cap">A</span>pplied <span className="highlight-text">AI Engineer</span> specializing in developing and deploying end-to-end AI/ML and custom solutions. 
+              Expertise includes LLMs (RAG, Fine-tuning), Deep Learning (CNN, RNN, Transformers), and cloud platforms like AWS and Azure.
+            </p>
+          </div>
+        </div>
 
         <div className="block-label">Expertise</div>
         <p>
@@ -106,18 +114,18 @@ function About({ theme, toggleTheme }: { theme: string; toggleTheme: () => void 
         </p>
 
         <div className="block-label">Education</div>
-        <div className="exp-item">
-          <div className="exp-main">
-            <span className="exp-org">United Institute of Technology</span>
-            <span className="exp-spacer">—</span>
-            <span className="exp-title">B.S. AI/ML</span>
+        <div className="edu-item">
+          <div className="edu-main">
+            <span className="edu-org">United Institute of Technology</span>
+            <span className="edu-date">Sep 2022 – Apr 2026</span>
           </div>
-          <div className="exp-sub">
-            <span>Sep 2022 – Apr 2026</span>
+          <div className="edu-title">Bachelor of Science in AI/ML</div>
+          <div className="edu-meta">
+            <span>Gandhinagar, India</span>
             <span>GPA: 7.5</span>
           </div>
-          <div className="exp-details">
-            Gandhinagar, India · Courses: AI, ML, Networking, Cloud Computing, Databases, OS, Data Structures
+          <div className="edu-details">
+            <strong>Courses</strong> AI, Machine Learning, Networking, Cloud Computing, Databases, Operating Systems, Data Structures
           </div>
         </div>
 
