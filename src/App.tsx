@@ -99,12 +99,12 @@ function TopBar({ theme, toggleTheme }: { theme: string; toggleTheme: () => void
 
 function Home({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) {
   const navLinks = [
-    { label: 'About', num: 'I', path: '/about' },
-    { label: 'Projects', num: 'II', path: '/projects' },
-    { label: 'Skills', num: 'III', path: '/skills' },
-    { label: 'Experience', num: 'IV', path: '/experience' },
-    { label: 'Resume', num: 'V', path: '/resume' },
-    { label: 'Contact', num: 'VI', path: '#' },
+    { label: 'About', num: 'I', path: '/about', isExternal: false },
+    { label: 'Projects', num: 'II', path: '/projects', isExternal: false },
+    { label: 'Skills', num: 'III', path: '/skills', isExternal: false },
+    { label: 'Experience', num: 'IV', path: '/experience', isExternal: false },
+    { label: 'Resume', num: 'V', path: '/resume.pdf', isExternal: true },
+    { label: 'Contact', num: 'VI', path: '#', isExternal: false },
   ];
 
   return (
@@ -117,11 +117,19 @@ function Home({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }
 
       <nav>
         {navLinks.map((link) => (
-          <Link key={link.label} to={link.path}>
-            <span className="label">{link.label}</span>
-            <span className="dots"></span>
-            <span className="numeral">{link.num}</span>
-          </Link>
+          link.isExternal ? (
+            <a key={link.label} href={link.path} target="_blank" rel="noopener noreferrer">
+              <span className="label">{link.label}</span>
+              <span className="dots"></span>
+              <span className="numeral">{link.num}</span>
+            </a>
+          ) : (
+            <Link key={link.label} to={link.path}>
+              <span className="label">{link.label}</span>
+              <span className="dots"></span>
+              <span className="numeral">{link.num}</span>
+            </Link>
+          )
         ))}
       </nav>
 
@@ -151,16 +159,13 @@ function About({ theme, toggleTheme }: { theme: string; toggleTheme: () => void 
   return (
     <div className="page">
       <TopBar theme={theme} toggleTheme={toggleTheme} />
-      
       <header className="section-header">
         <div className="section-numeral">Section I</div>
         <h2 className="section-title">About Me</h2>
         <div className="section-rule"></div>
       </header>
-
       <div className="content-block">
         <div className="block-label">Biography</div>
-        
         <div className="bio-intro">
           <div className="profile-frame">
             <img src="/profile.png" alt="Vansh Soni" />
@@ -172,14 +177,12 @@ function About({ theme, toggleTheme }: { theme: string; toggleTheme: () => void 
             </p>
           </div>
         </div>
-
         <div className="block-label">Expertise</div>
         <p>
           Proficient in key agent and orchestration frameworks, including LangChain, LlamaIndex, Multiple Agent Development Kit (ADK), and CrewAI. 
           Proven track record of delivering high-impact systems, such as HR automation bots and production-ready RAG Q&A systems, 
           utilizing Python and FastAPI for scalable AI agent orchestration.
         </p>
-
         <div className="block-label">Education</div>
         <div className="edu-item">
           <div className="edu-main">
@@ -195,28 +198,21 @@ function About({ theme, toggleTheme }: { theme: string; toggleTheme: () => void 
             <strong>Courses</strong> AI, Machine Learning, Networking, Cloud Computing, Databases, Operating Systems, Data Structures
           </div>
         </div>
-
         <div className="block-label">Connect</div>
-        
         <div className="contact-row">
           <span className="contact-label">Email</span>
           <a href="mailto:vanshsoniofficial@gmail.com" className="contact-value">vanshsoniofficial@gmail.com</a>
         </div>
-
         <div className="contact-row">
           <span className="contact-label">Mobile</span>
           <a href="tel:+919104039861" className="contact-value">+91 910 403 9861</a>
         </div>
-
         <div className="contact-row">
           <span className="contact-label">GitHub</span>
           <a href="https://github.com/eark749" target="_blank" rel="noopener noreferrer" className="contact-value">github.com/eark749</a>
         </div>
       </div>
-
-      <footer className="page-footer">
-        Fin. v. XIX
-      </footer>
+      <footer className="page-footer">Fin. v. XIX</footer>
     </div>
   );
 }
@@ -314,27 +310,6 @@ function Experience({ theme, toggleTheme }: { theme: string; toggleTheme: () => 
             <p className="exp-desc">{exp.desc}</p>
           </div>
         ))}
-      </div>
-      <footer className="page-footer">Fin. v. XIX</footer>
-    </div>
-  );
-}
-
-function Resume({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) {
-  return (
-    <div className="page">
-      <TopBar theme={theme} toggleTheme={toggleTheme} />
-      <header className="section-header">
-        <div className="section-numeral">Section V</div>
-        <h2 className="section-title">Resume</h2>
-        <div className="section-rule"></div>
-      </header>
-      <div className="resume-container">
-        <iframe src="/resume.pdf#toolbar=0&navpanes=0&scrollbar=0" className="resume-viewer" title="Vansh Soni Resume" />
-      </div>
-      <div className="resume-actions">
-        <a href="/resume.pdf" download="Vansh_Soni_Resume.pdf" className="resume-btn">Download PDF</a>
-        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="resume-btn">Open Fullscreen</a>
       </div>
       <footer className="page-footer">Fin. v. XIX</footer>
     </div>
@@ -456,7 +431,6 @@ function App() {
         <Route path="/projects" element={<Projects theme={theme} toggleTheme={toggleTheme} />} />
         <Route path="/skills" element={<Skills theme={theme} toggleTheme={toggleTheme} />} />
         <Route path="/experience" element={<Experience theme={theme} toggleTheme={toggleTheme} />} />
-        <Route path="/resume" element={<Resume theme={theme} toggleTheme={toggleTheme} />} />
       </Routes>
     </Router>
   );
