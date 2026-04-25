@@ -898,3 +898,501 @@ p, .body-text {
     font-size: 1.8rem;
   }
 }
+
+/* ── CONTACT: THE DUEL REQUEST ── */
+.duel-container {
+  display: flex;
+  min-height: 60vh;
+  margin-top: 2rem;
+  border: 1px solid var(--ink-faint);
+  position: relative;
+  overflow: hidden;
+}
+
+.duel-side {
+  flex: 1;
+  padding: 3rem 2rem;
+  transition: all 0.5s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.duel-side:hover {
+  background: var(--ink-faint);
+}
+
+.duel-divider {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--ink-faint);
+  z-index: 1;
+}
+
+.duel-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 1rem;
+}
+
+.duel-label {
+  font-family: 'Hubano', serif;
+  font-size: 2.5rem;
+  color: var(--ink);
+  margin-bottom: 2rem;
+  line-height: 1.1;
+}
+
+.duel-status {
+  font-family: 'monospace';
+  font-size: 0.8rem;
+  color: var(--accent); /* Neon coral red */
+  margin-top: auto;
+  opacity: 0.8;
+}
+
+.duel-links {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+.duel-links li {
+  margin-bottom: 1rem;
+}
+
+.duel-links a {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.3rem;
+  color: var(--ink-mid);
+  text-decoration: none;
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.duel-links a:hover {
+  color: var(--accent);
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background: var(--accent);
+  margin-left: 5px;
+  animation: blink 1s infinite;
+  vertical-align: middle;
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@media (max-width: 768px) {
+  .duel-container {
+    flex-direction: column;
+  }
+  .duel-divider {
+    display: none;
+  }
+  .duel-side {
+    border-bottom: 1px solid var(--ink-faint);
+  }
+  .duel-label {
+    font-size: 1.8rem;
+  }
+}
+
+/* ── CONTACT: THE WAX SEAL ── */
+.seal-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  perspective: 1000px;
+}
+
+.envelope-card {
+  width: 100%;
+  max-width: 500px;
+  background: #f4ecd8;
+  background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+  padding: 4rem 2rem;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  border: 1px solid rgba(0,0,0,0.1);
+  position: relative;
+  text-align: center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wax-seal {
+  width: 80px;
+  height: 80px;
+  background: #a52a2a; /* Deep Red */
+  border-radius: 50%;
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4), inset 0 0 15px rgba(0,0,0,0.3);
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  border: 2px solid #8b0000;
+}
+
+.wax-seal:hover {
+  transform: translateX(-50%) scale(1.1);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.5), inset 0 0 20px rgba(0,0,0,0.4);
+}
+
+.wax-seal::before {
+  content: 'VS';
+  font-family: 'Hubano', serif;
+  color: #fff;
+  font-size: 1.5rem;
+  opacity: 0.8;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.envelope-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #5d4037;
+  margin-bottom: 2rem;
+  opacity: 0.7;
+}
+
+.contact-detail-row {
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+.contact-detail-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #8b4513;
+  margin-bottom: 0.2rem;
+}
+
+.contact-detail-value {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.2rem;
+  color: #2d241e;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.contact-detail-value:hover {
+  color: #a52a2a;
+}
+
+.social-grid {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease;
+}
+
+.social-grid.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.social-link-icon {
+  color: #5d4037;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.social-link-icon:hover {
+  transform: scale(1.2);
+  color: #a52a2a;
+}
+
+[data-theme='dark'] .envelope-card {
+  background: #2d241e;
+  color: #f4ecd8;
+  border-color: rgba(244, 236, 216, 0.1);
+}
+
+[data-theme='dark'] .contact-detail-value {
+  color: #f4ecd8;
+}
+
+[data-theme='dark'] .social-link-icon {
+  color: #f4ecd8;
+}
+
+/* ── CONTACT: THE WARRIOR DUEL ── */
+.warrior-duel-container {
+  position: relative;
+  width: 100%;
+  min-height: 85vh;
+  background: url('/warrior-bg.png') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: inset 0 0 100px rgba(0,0,0,0.8);
+}
+
+/* Dark overlay to make text readable */
+.warrior-duel-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.7) 100%);
+  z-index: 1;
+}
+
+.duel-interface {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  padding: 0 2rem;
+}
+
+.duel-header-center {
+  text-align: center;
+}
+
+.duel-header-center .duel-title {
+  font-size: 0.7rem;
+  letter-spacing: 0.5em;
+  opacity: 0.8;
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.duel-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.duel-option-item {
+  width: 40%;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.duel-option-item:hover {
+  transform: translateY(-5px);
+}
+
+.duel-option-label {
+  font-family: 'Hubano', serif;
+  font-size: 2.2rem;
+  color: #fff;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 20px rgba(255, 77, 77, 0.5); /* Coral glow */
+}
+
+.duel-option-links {
+  list-style: none;
+  padding: 0;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  padding-top: 1rem;
+}
+
+.duel-option-links li {
+  margin-bottom: 0.8rem;
+}
+
+.duel-option-links a {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  transition: color 0.3s;
+}
+
+.duel-option-links a:hover {
+  color: var(--accent); /* Coral */
+}
+
+.duel-center-vs {
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--accent);
+  opacity: 0.6;
+}
+
+.warrior-status-bar {
+  position: absolute;
+  bottom: 3rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 5;
+}
+
+.status-terminal {
+  font-family: 'monospace';
+  font-size: 0.75rem;
+  color: #fff;
+  background: rgba(0,0,0,0.4);
+  padding: 0.5rem 1.5rem;
+  display: inline-block;
+  border-left: 2px solid var(--accent);
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 768px) {
+  .duel-options {
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .duel-option-item {
+    width: 100%;
+    text-align: center;
+  }
+  .duel-option-links a {
+    justify-content: center;
+  }
+  .duel-option-label {
+    font-size: 1.6rem;
+  }
+}
+
+/* ── FULLSCREEN CONTACT OVERRIDE ── */
+.page:has(.warrior-duel-container) {
+  padding: 0 !important;
+  max-width: none !important;
+}
+
+.warrior-duel-container {
+  min-height: 100vh !important;
+  border-radius: 0 !important;
+}
+
+.warrior-duel-container .topbar {
+  padding: 1.5rem 2rem;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+@media (max-width: 768px) {
+  .warrior-duel-container {
+    padding-top: 5rem;
+  }
+}
+
+/* ── OVERLAY FOOTER FOR FULLSCREEN CONTACT ── */
+.warrior-duel-container .page-footer {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 0;
+  right: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  z-index: 10;
+  border: none;
+  margin: 0;
+  text-align: center;
+}
+
+/* Adjust the status bar so it doesn't overlap with the absolute footer */
+.warrior-status-bar {
+  bottom: 4rem !important;
+}
+
+/* ── INTEGRATED WARRIOR FOOTER ── */
+.warrior-duel-container .warrior-footer-text {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  z-index: 10;
+}
+
+/* Ensure the standard footer doesn't show up on this page */
+.fullscreen-page footer.page-footer {
+  display: none !important;
+}
+
+/* ── LIGHT MODE WARRIOR OVERRIDE ── */
+[data-theme='light'] .warrior-duel-container {
+  background: url('/warrior-light-bg.png') no-repeat center center;
+  background-size: cover;
+}
+
+[data-theme='light'] .warrior-duel-container::before {
+  background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.4) 100%);
+}
+
+[data-theme='light'] .duel-option-label,
+[data-theme='light'] .duel-title,
+[data-theme='light'] .status-terminal {
+  color: #2d241e; /* Dark ink for light mode readability */
+  text-shadow: 0 0 10px rgba(255,255,255,0.8);
+}
+
+[data-theme='light'] .duel-option-links a {
+  color: #5d4037;
+}
+
+[data-theme='light'] .duel-option-links a:hover {
+  color: #a52a2a; /* Deep red for light mode */
+}
+
+[data-theme='light'] .warrior-footer-text {
+  color: rgba(0,0,0,0.5);
+}
+
+[data-theme='light'] .status-terminal {
+  background: rgba(255,255,255,0.6);
+  border-left: 2px solid #a52a2a;
+}
