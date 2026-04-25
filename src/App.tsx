@@ -33,7 +33,7 @@ function TopBar({ theme, toggleTheme }: { theme: string; toggleTheme: () => void
 function Home({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) {
   const navLinks = [
     { label: 'About', num: 'I', path: '/about' },
-    { label: 'Projects', num: 'II', path: '#' },
+    { label: 'Projects', num: 'II', path: '/projects' },
     { label: 'Skills', num: 'III', path: '#' },
     { label: 'Work', num: 'IV', path: '#' },
     { label: 'Resume', num: 'V', path: '#' },
@@ -46,7 +46,7 @@ function Home({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }
         <span style={{ display: 'block' }}>Vansh</span>
         <span style={{ display: 'block' }}>Soni</span>
       </h1>
-      <p className="tagline">AI Engineer</p>
+      <p className="tagline">AI ENGINEER</p>
 
       <nav>
         {navLinks.map((link) => (
@@ -154,6 +154,75 @@ function About({ theme, toggleTheme }: { theme: string; toggleTheme: () => void 
   );
 }
 
+function Projects({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) {
+  const projectList = [
+    {
+      name: 'LiveKit Voice Agents',
+      url: 'github.com/eark749/voice-agents',
+      img: '/proj-voice.png',
+      desc: 'Production-grade real-time voice AI system built on WebRTC (UDP) achieving sub-500ms latency using VAD + semantic turn detection, preemptive LLM generation, and optimized STT → LLM → TTS streaming pipeline.',
+      tech: ['WebRTC', 'Python', 'FastAPI', 'LLM', 'VAD']
+    },
+    {
+      name: 'SmartAssist',
+      url: 'github.com/eark749/smartassist',
+      img: '/proj-rag.png',
+      desc: 'Enterprise-scale RAG system on AWS leveraging Textract, OpenSearch embeddings, and Bedrock (Nova Pro), with ECS auto-scaling, CI/CD pipelines, and IAM-secured microservices architecture.',
+      tech: ['AWS', 'Bedrock', 'OpenSearch', 'Docker', 'RAG']
+    },
+    {
+      name: 'HR AI',
+      url: 'github.com/eark749/hr-ai',
+      img: '/proj-hr.png',
+      desc: 'Full-stack AI-powered HR platform with context-aware chatbot, multi-session memory, and real-time WebSocket streaming, enabling personalized employee workflows like leave, attendance, and payroll queries.',
+      tech: ['React', 'WebSocket', 'FastAPI', 'PostgreSQL', 'LangChain']
+    },
+    {
+      name: 'Medi',
+      url: 'github.com/eark749/medi',
+      img: '/proj-medi.png',
+      desc: 'Scalable medical AI backend integrating LLM-driven QA agents, secure document pipelines, and Azure services (Cognitive, Blob, DB) for compliant healthcare data handling and intelligent retrieval.',
+      tech: ['Azure', 'Medical AI', 'Python', 'LLM Agents', 'HIPAA']
+    }
+  ];
+
+  return (
+    <div className="page">
+      <TopBar theme={theme} toggleTheme={toggleTheme} />
+      
+      <header className="section-header">
+        <div className="section-numeral">Section II</div>
+        <h2 className="section-title">Projects</h2>
+        <div className="section-rule"></div>
+      </header>
+
+      <div className="content-block">
+        {projectList.map((project, index) => (
+          <div key={index} className="project-card">
+            <div className="project-visual">
+              <img src={project.img} alt={project.name} />
+            </div>
+            <div className="project-header">
+              <span className="project-name">{project.name}</span>
+              <a href={`https://${project.url}`} target="_blank" rel="noopener noreferrer" className="project-link">{project.url}</a>
+            </div>
+            <p className="project-description">{project.desc}</p>
+            <div className="project-tech">
+              {project.tech.map((t, i) => (
+                <span key={i} className="tech-tag">{t}</span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <footer className="page-footer">
+        Fin. v. XIX
+      </footer>
+    </div>
+  );
+}
+
 function App() {
   const [theme, setTheme] = useState('dark');
 
@@ -170,6 +239,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home theme={theme} toggleTheme={toggleTheme} />} />
         <Route path="/about" element={<About theme={theme} toggleTheme={toggleTheme} />} />
+        <Route path="/projects" element={<Projects theme={theme} toggleTheme={toggleTheme} />} />
       </Routes>
     </Router>
   );
