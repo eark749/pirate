@@ -16,9 +16,9 @@
 
 :root {
   --bg: #111010;
-  --ink: #c23b2a;
-  --ink-mid: #a03025;
-  --ink-light: #7a2a20;
+  --ink: #ff4d4d;
+  --ink-mid: #ff6666;
+  --ink-light: #ff8080;
   --ink-faint: #3a1510;--selection-bg: var(--ink);--selection-text: var(--bg);
 }
 
