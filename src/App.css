@@ -24,14 +24,14 @@
 }
 
 .tagline {
-  font-family: 'EB Garamond', serif;
-  font-weight: 600;
+  font-family: 'Hubano', 'Cinzel Decorative', serif;
+  font-weight: 400;
   font-size: clamp(0.9rem, 2.5vw, 1.05rem);
   letter-spacing: 0.04em;
   color: var(--ink);
   margin-top: 0.4rem;
   margin-bottom: 2.8rem;
-  white-space: nowrap;
+  white-space: nowrap; text-transform: uppercase;
 }
 
 nav {
@@ -47,9 +47,9 @@ nav a {
   align-items: baseline;
   text-decoration: none;
   color: var(--ink);
-  font-family: 'Cinzel', serif;
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
+  font-family: 'Hubano', 'Cinzel Decorative', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   transition: opacity 0.2s;
   line-height: 2;
@@ -58,12 +58,12 @@ nav a {
 
 nav a:hover { opacity: 0.65; }
 
-nav a .label { flex-shrink: 0; font-weight: 600; }
+nav a .label { flex-shrink: 0; font-weight: 400; }
 
 nav a .dots {
   flex: 1;
   overflow: hidden;
-  white-space: nowrap;
+  white-space: nowrap; text-transform: uppercase;
   padding: 0 0.2em;
   height: 1.1em;
   margin-bottom: 0.05em;
@@ -76,7 +76,7 @@ nav a .dots {
 
 nav a .numeral {
   flex-shrink: 0;
-  font-family: 'EB Garamond', serif;
+  font-family: 'Hubano', 'Cinzel Decorative', serif;
   font-style: italic;
   font-size: 0.85rem;
   letter-spacing: 0.05em;
@@ -92,7 +92,7 @@ footer {
 }
 
 .version {
-  font-family: 'EB Garamond', serif;
+  font-family: 'Hubano', 'Cinzel Decorative', serif;
   font-size: 0.82rem;
   letter-spacing: 0.1em;
   color: var(--ink);

@@ -1,24 +1,43 @@
 import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 
-function App() {
-  const [theme, setTheme] = useState('dark');
+/**
+ * Common TopBar component for internal pages
+ */
+function TopBar({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) {
+  return (
+    <div className="topbar">
+      <Link to="/" className="topbar-home">
+        <span className="arrow">←</span> Home
+      </Link>
+      <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle light/dark mode">
+        {theme === 'light' ? (
+          <svg className="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        ) : (
+          <svg className="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <line x1="12" y1="2" x2="12" y2="4"></line><line x1="12" y1="20" x2="12" y2="22"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="2" y1="12" x2="4" y2="12"></line><line x1="20" y1="12" x2="22" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        )}
+      </button>
+    </div>
+  );
+}
 
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
-  };
-
+function Home({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) {
   const navLinks = [
-    { label: 'About', num: 'I', href: '#' },
-    { label: 'Projects', num: 'II', href: '#' },
-    { label: 'Skills', num: 'III', href: '#' },
-    { label: 'Work', num: 'IV', href: '#' },
-    { label: 'Resume', num: 'V', href: '#' },
-    { label: 'Contact', num: 'VI', href: '#' },
+    { label: 'About', num: 'I', path: '/about' },
+    { label: 'Projects', num: 'II', path: '#' },
+    { label: 'Skills', num: 'III', path: '#' },
+    { label: 'Work', num: 'IV', path: '#' },
+    { label: 'Resume', num: 'V', path: '#' },
+    { label: 'Contact', num: 'VI', path: '#' },
   ];
 
   return (
@@ -31,11 +50,11 @@ function App() {
 
       <nav>
         {navLinks.map((link) => (
-          <a key={link.label} href={link.href}>
+          <Link key={link.label} to={link.path}>
             <span className="label">{link.label}</span>
             <span className="dots"></span>
             <span className="numeral">{link.num}</span>
-          </a>
+          </Link>
         ))}
       </nav>
 
@@ -43,12 +62,10 @@ function App() {
         <span className="version">v. XIX</span>
         <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle light/dark mode">
           {theme === 'light' ? (
-            /* Moon icon (show in light mode to toggle to dark) */
             <svg className="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
           ) : (
-            /* Sun icon (show in dark mode to toggle to light) */
             <svg className="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="4"></circle>
               <line x1="12" y1="2" x2="12" y2="4"></line><line x1="12" y1="20" x2="12" y2="22"></line>
@@ -60,6 +77,93 @@ function App() {
         </button>
       </footer>
     </div>
+  );
+}
+
+function About({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) {
+  return (
+    <div className="page">
+      <TopBar theme={theme} toggleTheme={toggleTheme} />
+      
+      <header className="section-header">
+        <div className="section-numeral">Section I</div>
+        <h2 className="section-title">About Me</h2>
+        <div className="section-rule"></div>
+      </header>
+
+      <div className="content-block">
+        <div className="block-label">Biography</div>
+        <p>
+          Applied AI Engineer specializing in developing and deploying end-to-end AI/ML and custom solutions. 
+          Expertise includes LLMs (RAG, Fine-tuning), Deep Learning (CNN, RNN, Transformers), and cloud platforms like AWS and Azure.
+        </p>
+
+        <div className="block-label">Expertise</div>
+        <p>
+          Proficient in key agent and orchestration frameworks, including LangChain, LlamaIndex, Multiple Agent Development Kit (ADK), and CrewAI. 
+          Proven track record of delivering high-impact systems, such as HR automation bots and production-ready RAG Q&A systems, 
+          utilizing Python and FastAPI for scalable AI agent orchestration.
+        </p>
+
+        <div className="block-label">Education</div>
+        <div className="exp-item">
+          <div className="exp-main">
+            <span className="exp-org">United Institute of Technology</span>
+            <span className="exp-spacer">—</span>
+            <span className="exp-title">B.S. AI/ML</span>
+          </div>
+          <div className="exp-sub">
+            <span>Sep 2022 – Apr 2026</span>
+            <span>GPA: 7.5</span>
+          </div>
+          <div className="exp-details">
+            Gandhinagar, India · Courses: AI, ML, Networking, Cloud Computing, Databases, OS, Data Structures
+          </div>
+        </div>
+
+        <div className="block-label">Connect</div>
+        
+        <div className="contact-row">
+          <span className="contact-label">Email</span>
+          <a href="mailto:vanshsoniofficial@gmail.com" className="contact-value">vanshsoniofficial@gmail.com</a>
+        </div>
+
+        <div className="contact-row">
+          <span className="contact-label">Mobile</span>
+          <a href="tel:+919104039861" className="contact-value">+91 910 403 9861</a>
+        </div>
+
+        <div className="contact-row">
+          <span className="contact-label">GitHub</span>
+          <a href="https://github.com/eark749" target="_blank" rel="noopener noreferrer" className="contact-value">github.com/eark749</a>
+        </div>
+      </div>
+
+      <footer className="page-footer">
+        Fin. v. XIX
+      </footer>
+    </div>
+  );
+}
+
+function App() {
+  const [theme, setTheme] = useState('dark');
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
+
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home theme={theme} toggleTheme={toggleTheme} />} />
+        <Route path="/about" element={<About theme={theme} toggleTheme={toggleTheme} />} />
+      </Routes>
+    </Router>
   );
 }
 

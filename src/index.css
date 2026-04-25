@@ -19,7 +19,7 @@
   --ink: #c23b2a;
   --ink-mid: #a03025;
   --ink-light: #7a2a20;
-  --ink-faint: #3a1510;
+  --ink-faint: #3a1510;--selection-bg: var(--ink);--selection-text: var(--bg);
 }
 
 [data-theme='light'] {
@@ -27,7 +27,7 @@
   --ink: #1a1510;
   --ink-mid: #3a3228;
   --ink-light: #7a6e62;
-  --ink-faint: #b0a898;
+  --ink-faint: #b0a898;--selection-bg: var(--ink);--selection-text: var(--bg);
 }
 
 body {
@@ -65,4 +65,191 @@ body::before {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+/* ── TOP NAV BAR ── */
+.topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 2rem;
+}
+
+.topbar-home {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-mid);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.2s;
+}
+
+.topbar-home:hover { color: var(--ink); }
+
+.topbar-home .arrow {
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+
+/* ── PAGE LAYOUT ── */
+.page {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5.5rem 2rem 4rem;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* ── SECTION HEADER ── */
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  width: 100%;
+}
+
+.section-numeral {
+  font-family: 'EB Garamond', serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-light);
+  margin-bottom: 0.4rem;
+}
+
+.section-title {
+  font-family: 'Hubano', 'Cinzel Decorative', serif;
+  font-weight: 700;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1.1;
+}
+
+.section-rule {
+  width: 60px;
+  height: 1px;
+  background: var(--ink-light);
+  margin: 1.2rem auto 0;
+}
+
+/* ── CONTENT BLOCKS ── */
+.content-block {
+  width: 100%;
+}
+
+.block-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 0.6rem;
+  margin-top: 2.2rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--ink-faint);
+}
+
+.block-label:first-of-type { margin-top: 0; }
+
+p, .body-text {
+  font-family: 'EB Garamond', serif;
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: var(--ink-mid);
+}
+
+/* ── CONTACT LINKS ── */
+.contact-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid var(--ink-faint);
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.contact-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+
+.contact-value {
+  font-family: 'EB Garamond', serif;
+  font-size: 1rem;
+  color: var(--ink-mid);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contact-value:hover { color: var(--ink); }
+
+/* ── FOOTER ── */
+.page-footer {
+  margin-top: 3rem;
+  text-align: center;
+  font-family: 'EB Garamond', serif;
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--ink-faint);
+}
+
+/* ── EDUCATION / EXPERIENCE ITEMS ── */
+.exp-item {
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.exp-main {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-family: 'EB Garamond', serif;
+  font-size: 1.15rem;
+  color: var(--ink);
+  margin-bottom: 0.2rem;
+}
+
+.exp-org { font-weight: 600; }
+.exp-spacer { color: var(--ink-light); opacity: 0.6; }
+.exp-title { font-style: italic; color: var(--ink-mid); }
+
+.exp-sub {
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 0.6rem;
+}
+
+.exp-details {
+  font-family: 'EB Garamond', serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ink-mid);
+  opacity: 0.85;
+}
+
+::selection {
+  background-color: var(--selection-bg);
+  color: var(--selection-text);
 }
