@@ -400,7 +400,7 @@ function Projects({ theme, toggleTheme }: { theme: string; toggleTheme: () => vo
     {
       name: 'LiveKit Voice Agents',
       url: 'github.com/eark749/voice-agents',
-      img: '/proj-voice.png',
+      video: 'https://pub-791252e542b34b9b85d72f368c5c362f.r2.dev/video-agent.mp4',
       desc: 'Production-grade real-time voice AI system built on WebRTC achieving sub-500ms latency using VAD + semantic turn detection, preemptive LLM generation, and optimized STT → LLM → TTS streaming pipeline.',
     },
     {
