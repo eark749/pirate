@@ -31,7 +31,8 @@
   color: var(--ink);
   margin-top: 0.4rem;
   margin-bottom: 2.8rem;
-  white-space: nowrap; text-transform: uppercase;
+  white-space: nowrap;
+  text-transform: uppercase;
 }
 
 nav {
@@ -56,14 +57,20 @@ nav a {
   position: relative;
 }
 
-nav a:hover { opacity: 0.65; }
+nav a:hover {
+  opacity: 0.65;
+}
 
-nav a .label { flex-shrink: 0; font-weight: 400; }
+nav a .label {
+  flex-shrink: 0;
+  font-weight: 400;
+}
 
 nav a .dots {
   flex: 1;
   overflow: hidden;
-  white-space: nowrap; text-transform: uppercase;
+  white-space: nowrap;
+  text-transform: uppercase;
   padding: 0 0.2em;
   height: 1.1em;
   margin-bottom: 0.05em;
@@ -112,12 +119,13 @@ footer {
   opacity: 0.75;
 }
 
-.theme-toggle:hover { 
-  opacity: 1; 
-  transform: rotate(20deg); 
+.theme-toggle:hover {
+  opacity: 1;
+  transform: rotate(20deg);
 }
 
-.icon-sun, .icon-moon {
+.icon-sun,
+.icon-moon {
   width: 18px;
   height: 18px;
 }

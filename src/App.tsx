@@ -11,7 +11,7 @@ const getSkillLogo = (name: string) => {
     python: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
     sql: 'https://www.svgrepo.com/show/374093/sql.svg',
     r: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg',
-    cplusplus: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg',
+    cplusplus: 'https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg',
     cpp: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg',
     rust: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg',
     cypherquerylanguage: 'https://www.svgrepo.com/show/354113/neo4j.svg',
@@ -31,10 +31,13 @@ const getSkillLogo = (name: string) => {
     mysql: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
     docker: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
     git: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
-    aws: 'https://www.svgrepo.com/show/353393/aws.svg',
+    aws: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSObhWW7gEGNs1r3kbEXIeWuIDC74C6p5RVQ&s',
     azure: 'https://www.svgrepo.com/show/353457/azure.svg',
     apachehttpserver: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg',
-    postman: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg'
+    postman: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg',
+    chromadb: 'https://www.trychroma.com/_next/static/media/chroma-wordmark.0~1c352v-zy35.svg?dpl=dpl_GaMunTYzau8H3aiHFBDnAoLpDwXF',
+    vectordb: 'https://static.vecteezy.com/system/resources/previews/026/753/186/non_2x/database-icon-icon-for-your-website-mobile-presentation-and-logo-design-vector.jpg',
+    datawarehouse: 'https://cdn-icons-png.flaticon.com/512/2970/2970531.png'
   };
   return mapping[n] || 'https://www.svgrepo.com/show/422204/ai-artificial-intelligence-machine-learning.svg';
 };
@@ -172,15 +175,15 @@ function About({ theme, toggleTheme }: { theme: string; toggleTheme: () => void 
           </div>
           <div className="bio-text-primary">
             <p>
-              <span className="drop-cap">A</span>pplied <span className="highlight-text">AI Engineer</span> specializing in developing and deploying end-to-end AI/ML and custom solutions. 
+              <span className="drop-cap">A</span>pplied <span className="highlight-text">AI Engineer</span> specializing in developing and deploying end-to-end AI/ML and custom solutions.
               Expertise includes LLMs (RAG, Fine-tuning), Deep Learning (CNN, RNN, Transformers), and cloud platforms like AWS and Azure.
             </p>
           </div>
         </div>
         <div className="block-label">Expertise</div>
         <p>
-          Proficient in key agent and orchestration frameworks, including LangChain, LlamaIndex, Multiple Agent Development Kit (ADK), and CrewAI. 
-          Proven track record of delivering high-impact systems, such as HR automation bots and production-ready RAG Q&A systems, 
+          Proficient in key agent and orchestration frameworks, including LangChain, LlamaIndex, Multiple Agent Development Kit (ADK), and CrewAI.
+          Proven track record of delivering high-impact systems, such as HR automation bots and production-ready RAG Q&A systems,
           utilizing Python and FastAPI for scalable AI agent orchestration.
         </p>
         <div className="block-label">Education</div>
@@ -235,7 +238,7 @@ function Contact({ theme, toggleTheme }: { theme: string; toggleTheme: () => voi
     <div className="page fullscreen-page">
       <div className="warrior-duel-container">
         <TopBar theme={theme} toggleTheme={toggleTheme} />
-        
+
         <div className="duel-interface">
           <div className="duel-header-center">
             <div className="duel-title">SECTION VI // CONTACT</div>
@@ -247,13 +250,13 @@ function Contact({ theme, toggleTheme }: { theme: string; toggleTheme: () => voi
               <ul className="duel-option-links">
                 <li>
                   <a href="mailto:vanshsoniofficial@gmail.com">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
                     Email Transmission
                   </a>
                 </li>
                 <li>
                   <a href="https://www.linkedin.com/in/vanshsoniofficial" target="_blank" rel="noopener noreferrer">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" /><rect width="4" height="12" x="2" y="9" /><circle cx="4" cy="4" r="2" /></svg>
                     LinkedIn Profile
                   </a>
                 </li>
@@ -267,13 +270,13 @@ function Contact({ theme, toggleTheme }: { theme: string; toggleTheme: () => voi
               <ul className="duel-option-links">
                 <li>
                   <a href="https://github.com/eark749" target="_blank" rel="noopener noreferrer">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" /><path d="M9 18c-4.51 2-5-2-7-2" /></svg>
                     GitHub Scrolls
                   </a>
                 </li>
                 <li>
                   <a href="https://twitter.com/eark749" target="_blank" rel="noopener noreferrer">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" /></svg>
                     X Signal
                   </a>
                 </li>
@@ -287,7 +290,7 @@ function Contact({ theme, toggleTheme }: { theme: string; toggleTheme: () => voi
             {typedText}<span className="terminal-cursor"></span>
           </div>
         </div>
-        
+
         <div className="warrior-footer-text">Fin. v. XIX</div>
       </div>
     </div>
