@@ -44,33 +44,43 @@ const getSkillLogo = (name: string) => {
 
 const Icons = {
   Languages: () => (
-    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="m5 8 6 6" /><path d="m4 14 6-6 2-3" /><path d="M2 5h12" /><path d="M7 2h1" /><path d="m22 22-5-10-5 10" /><path d="M14 18h6" />
+    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 16L9 4h2l5 12h-2.5l-1-2.5h-5L6.5 16H4zm4.5-5h3.5L10 6.5 8.5 11z" />
+      <path d="M12 6h9" />
+      <path d="M16.5 3v3" />
+      <path d="M21 6c0 5-2.5 8-7 11" />
+      <path d="M13.5 9c1 3 3.5 6 8.5 8" />
     </svg>
   ),
   AI: () => (
-    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 2v10" /><path d="M18.4 6.6a9 9 0 1 1-12.77.04" />
+    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="3" />
+      <path d="M12 7a5 5 0 015 5 5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5" />
+      <path d="M12 2v2M12 20v2M2 12h2M20 12h2" />
     </svg>
   ),
   Frameworks: () => (
-    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" /><polyline points="3.27 6.96 12 12.01 20.73 6.96" /><line x1="12" y1="22.08" x2="12" y2="12" />
+    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 2L3 7v10l9 5 9-5V7l-9-5z" />
+      <path d="M12 12L3 7m9 5l9-5m-9 5v10" opacity="0.5" />
     </svg>
   ),
   Data: () => (
-    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M21.21 15.89A10 10 0 1 1 8 2.83" /><path d="M22 12A10 10 0 0 0 12 2v10z" />
+    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+      <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+      <ellipse cx="12" cy="5" rx="9" ry="3" />
     </svg>
   ),
   Databases: () => (
-    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <ellipse cx="12" cy="5" rx="9" ry="3" /><path d="M3 5V19A9 3 0 0 0 21 19V5" /><path d="M3 12A9 3 0 0 0 21 12" />
+    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect width="18" height="18" x="3" y="3" rx="2" />
+      <path d="M3 9h18M3 15h18M9 3v18M15 3v18" opacity="0.3" />
     </svg>
   ),
   Cloud: () => (
-    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M17.5 19a5.5 5.5 0 0 1-4.7-2.8" /><path d="M20.9 14.1A6.4 6.4 0 0 0 14 8a6 6 0 0 0-11.2 3.6A6 6 0 0 0 6 22h11.5a4.5 4.5 0 0 0 0-9Z" />
+    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 13V2M5 13l7 7 7-7M2 13h20" />
     </svg>
   )
 };
@@ -400,12 +410,27 @@ function Skills({ theme, toggleTheme }: { theme: string; toggleTheme: () => void
     <div className="page">
       <TopBar theme={theme} toggleTheme={toggleTheme} />
       <header className="section-header"><div className="section-numeral">Section III</div><h2 className="section-title">Skills</h2><div className="section-rule"></div></header>
-      <div className="skills-grid">{skillCategories.map((cat, index) => (
-        <div key={index} className="skill-category">
-          <div className="skill-category-header">{cat.icon}<span className="skill-category-title">{cat.title}</span></div>
-          <div className="skill-list">{cat.skills.map((skill, i) => { const logo = getSkillLogo(skill); return (<span key={i} className="skill-tag"><img src={logo} className="skill-logo" alt={skill} />{skill}</span>); })}</div>
-        </div>
-      ))}</div>
+      <div className="skills-vertical-stack">
+        {skillCategories.map((cat, index) => (
+          <div key={index} className="skill-category-block">
+            <div className="skill-category-banner">
+              <div className="skill-category-info">
+                <span className="skill-slot-label">Slot {String(index + 1).padStart(2, '0')}</span>
+                <h3 className="skill-category-name">{cat.title}</h3>
+              </div>
+              <div className="skill-category-icon">{cat.icon}</div>
+            </div>
+            <div className="skill-items-grid">
+              {cat.skills.map((skill, i) => (
+                <div key={i} className="skill-item-row">
+                  <span className="skill-arrow">›</span>
+                  <span className="skill-text">{skill}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
       <footer className="page-footer">Fin. v. XIX</footer>
     </div>
   );
