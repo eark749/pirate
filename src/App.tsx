@@ -375,15 +375,7 @@ function ProjectThumb({ project }: { project: { name: string; img?: string; vide
   return (
     <div className="project-thumb" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       {project.video ? (
-        <video
-          ref={videoRef}
-          src={project.video}
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          className="project-thumb-video"
-        />
+        <video ref={videoRef} src={project.video} muted loop playsInline preload="metadata" className="project-thumb-video" />
       ) : (
         <img src={project.img} alt={project.name} />
       )}
