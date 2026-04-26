@@ -403,24 +403,6 @@ function Projects({ theme, toggleTheme }: { theme: string; toggleTheme: () => vo
       video: 'https://pub-791252e542b34b9b85d72f368c5c362f.r2.dev/video-agent.mp4',
       desc: 'Production-grade real-time voice AI system built on WebRTC achieving sub-500ms latency using VAD + semantic turn detection, preemptive LLM generation, and optimized STT → LLM → TTS streaming pipeline.',
     },
-    {
-      name: 'SmartAssist',
-      url: 'github.com/eark749/smartassist',
-      img: '/proj-rag.png',
-      desc: 'Enterprise-scale RAG system on AWS leveraging Textract, OpenSearch embeddings, and Bedrock (Nova Pro), with ECS auto-scaling, CI/CD pipelines, and IAM-secured microservices architecture.',
-    },
-    {
-      name: 'HR AI',
-      url: 'github.com/eark749/hr-ai',
-      img: '/proj-hr.png',
-      desc: 'Full-stack AI-powered HR platform with context-aware chatbot, multi-session memory, and real-time WebSocket streaming, enabling personalized employee workflows like leave, attendance, and payroll queries.',
-    },
-    {
-      name: 'Medi',
-      url: 'github.com/eark749/medi',
-      img: '/proj-medi.png',
-      desc: 'Scalable medical AI backend integrating LLM-driven QA agents, secure document pipelines, and Azure services (Cognitive, Blob, DB) for compliant healthcare data handling and intelligent retrieval.',
-    },
   ];
 
   return (
