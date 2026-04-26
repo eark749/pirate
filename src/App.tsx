@@ -361,6 +361,36 @@ function Experience({ theme, toggleTheme }: { theme: string; toggleTheme: () => 
   );
 }
 
+function ProjectThumb({ project }: { project: { name: string; img?: string; video?: string; desc: string } }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleMouseEnter = () => videoRef.current?.play();
+  const handleMouseLeave = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
+
+  return (
+    <div className="project-thumb" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      {project.video ? (
+        <video
+          ref={videoRef}
+          src={project.video}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="project-thumb-video"
+        />
+      ) : (
+        <img src={project.img} alt={project.name} />
+      )}
+    </div>
+  );
+}
+
 function Projects({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) {
   const projectList: { name: string; url: string; desc: string; img?: string; video?: string }[] = [
     {
@@ -368,6 +398,12 @@ function Projects({ theme, toggleTheme }: { theme: string; toggleTheme: () => vo
       url: 'github.com/eark749/jeddy',
       video: 'https://pub-791252e542b34b9b85d72f368c5c362f.r2.dev/jeddy.mp4',
       desc: 'AI co-pilot that auto-fills job application forms by reading your resume and matching it to job requirements — cutting application time from minutes to seconds.',
+    },
+    {
+      name: 'Rootlayer — CLI-MCP Commands',
+      url: 'github.com/eark749/rootlayer',
+      video: 'https://pub-791252e542b34b9b85d72f368c5c362f.r2.dev/root-layer.mp4',
+      desc: 'CLI tool that exposes MCP commands to drastically reduce LLM context window usage — letting agents navigate codebases efficiently without burning tokens on full file reads.',
     },
     {
       name: 'LiveKit Voice Agents',
@@ -406,23 +442,7 @@ function Projects({ theme, toggleTheme }: { theme: string; toggleTheme: () => vo
       <div className="projects-list">
         {projectList.map((project, index) => (
           <div key={index} className="project-entry">
-            <div className="project-thumb">
-              {project.video ? (
-                <video
-                  src={project.video}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="project-thumb-video"
-                />
-              ) : (
-                <img src={project.img} alt={project.name} />
-              )}
-              <div className="project-thumb-overlay">
-                <p>{project.desc}</p>
-              </div>
-            </div>
+            <ProjectThumb project={project} />
             <div className="project-meta">
               <span className="project-meta-name">{project.name}</span>
               <a
@@ -434,6 +454,7 @@ function Projects({ theme, toggleTheme }: { theme: string; toggleTheme: () => vo
                 {project.url}
               </a>
             </div>
+            <p className="project-desc">{project.desc}</p>
           </div>
         ))}
       </div>
