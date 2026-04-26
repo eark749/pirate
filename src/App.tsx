@@ -394,7 +394,7 @@ function Projects({ theme, toggleTheme }: { theme: string; toggleTheme: () => vo
     {
       name: 'Rootlayer — CLI-MCP Commands',
       url: 'github.com/eark749/rootlayer',
-      video: 'https://pub-791252e542b34b9b85d72f368c5c362f.r2.dev/root-layer.mp4',
+      video: 'https://pub-791252e542b34b9b85d72f368c5c362f.r2.dev/root-layer1.mp4',
       desc: 'CLI tool that exposes MCP commands to drastically reduce LLM context window usage — letting agents navigate codebases efficiently without burning tokens on full file reads.',
     },
     {
