@@ -45,42 +45,54 @@ const getSkillLogo = (name: string) => {
 const Icons = {
   Languages: () => (
     <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M4 16L9 4h2l5 12h-2.5l-1-2.5h-5L6.5 16H4zm4.5-5h3.5L10 6.5 8.5 11z" />
-      <path d="M12 6h9" />
-      <path d="M16.5 3v3" />
-      <path d="M21 6c0 5-2.5 8-7 11" />
-      <path d="M13.5 9c1 3 3.5 6 8.5 8" />
+      {/* The Master Dagger / Blade */}
+      <path d="M14.5 17.5L3 6V3h3l11.5 11.5" />
+      <path d="M13 19l6-6" />
+      <path d="M16 22l5-5" />
+      <circle cx="20" cy="4" r="1.5" fill="currentColor" />
     </svg>
   ),
   AI: () => (
-    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+      {/* The Oracle Eye / Arcane Sigil */}
       <circle cx="12" cy="12" r="3" />
-      <path d="M12 7a5 5 0 015 5 5 5 0 01-5 5 5 5 0 01-5-5 5 5 0 015-5" />
-      <path d="M12 2v2M12 20v2M2 12h2M20 12h2" />
+      <path d="M3 12c0-5 4-9 9-9s9 4 9 9-4 9-9 9-9-4-9-9z" strokeOpacity="0.3" />
+      <path d="M12 8V5M12 19v-3M8 12H5M19 12h-3" />
+      <path d="M16 8l2-2M6 18l2-2M16 16l2 2M6 6l2 2" />
     </svg>
   ),
   Frameworks: () => (
-    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+      {/* The Warrior's Plate / Armor Shell */}
       <path d="M12 2L3 7v10l9 5 9-5V7l-9-5z" />
-      <path d="M12 12L3 7m9 5l9-5m-9 5v10" opacity="0.5" />
+      <path d="M12 22V12M12 12L3 7m9 5l9-5" opacity="0.4" />
+      <path d="M7 14.5l5 2.5 5-2.5" />
     </svg>
   ),
   Data: () => (
-    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
-      <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
-      <ellipse cx="12" cy="5" rx="9" ry="3" />
+    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+      {/* The Strategic Map / Compass */}
+      <circle cx="12" cy="12" r="10" />
+      <path d="M16.2 7.8l-2.2 6.4-6.4 2.2 2.2-6.4 6.4-2.2z" />
+      <path d="M12 2v2M12 20v2M2 12h2M20 12h2" strokeOpacity="0.5" />
     </svg>
   ),
   Databases: () => (
-    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <rect width="18" height="18" x="3" y="3" rx="2" />
-      <path d="M3 9h18M3 15h18M9 3v18M15 3v18" opacity="0.3" />
+    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+      {/* The Great Archives / Stone Tome */}
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+      <path d="M8 6h8M8 10h8M8 14h4" opacity="0.4" />
     </svg>
   ),
   Cloud: () => (
-    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 13V2M5 13l7 7 7-7M2 13h20" />
+    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+      {/* The War Beacon / Signal Tower */}
+      <path d="M12 2v8" />
+      <path d="M5 12l7-7 7 7" />
+      <path d="M2 17h20" />
+      <path d="M2 21h20" strokeOpacity="0.4" />
+      <circle cx="12" cy="2" r="1" fill="currentColor" />
     </svg>
   )
 };
@@ -350,87 +362,183 @@ function Experience({ theme, toggleTheme }: { theme: string; toggleTheme: () => 
 }
 
 function Projects({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) {
-  const projectList = [
+  const projectList: { name: string; url: string; desc: string; img?: string; video?: string }[] = [
+    {
+      name: 'Jeddy — Job Form Fillup Co-pilot',
+      url: 'github.com/eark749/jeddy',
+      video: 'https://pub-791252e542b34b9b85d72f368c5c362f.r2.dev/jeddy.mp4',
+      desc: 'AI co-pilot that auto-fills job application forms by reading your resume and matching it to job requirements — cutting application time from minutes to seconds.',
+    },
     {
       name: 'LiveKit Voice Agents',
       url: 'github.com/eark749/voice-agents',
       img: '/proj-voice.png',
-      desc: 'Production-grade real-time voice AI system built on WebRTC (UDP) achieving sub-500ms latency using VAD + semantic turn detection, preemptive LLM generation, and optimized STT → LLM → TTS streaming pipeline.',
-      tech: ['WebRTC', 'Python', 'FastAPI', 'LLM', 'VAD']
+      desc: 'Production-grade real-time voice AI system built on WebRTC achieving sub-500ms latency using VAD + semantic turn detection, preemptive LLM generation, and optimized STT → LLM → TTS streaming pipeline.',
     },
     {
       name: 'SmartAssist',
       url: 'github.com/eark749/smartassist',
       img: '/proj-rag.png',
       desc: 'Enterprise-scale RAG system on AWS leveraging Textract, OpenSearch embeddings, and Bedrock (Nova Pro), with ECS auto-scaling, CI/CD pipelines, and IAM-secured microservices architecture.',
-      tech: ['AWS', 'Bedrock', 'OpenSearch', 'Docker', 'RAG']
     },
     {
       name: 'HR AI',
       url: 'github.com/eark749/hr-ai',
       img: '/proj-hr.png',
       desc: 'Full-stack AI-powered HR platform with context-aware chatbot, multi-session memory, and real-time WebSocket streaming, enabling personalized employee workflows like leave, attendance, and payroll queries.',
-      tech: ['React', 'WebSocket', 'FastAPI', 'PostgreSQL', 'LangChain']
     },
     {
       name: 'Medi',
       url: 'github.com/eark749/medi',
       img: '/proj-medi.png',
       desc: 'Scalable medical AI backend integrating LLM-driven QA agents, secure document pipelines, and Azure services (Cognitive, Blob, DB) for compliant healthcare data handling and intelligent retrieval.',
-      tech: ['Azure', 'Medical AI', 'Python', 'LLM Agents', 'HIPAA']
-    }
+    },
   ];
+
   return (
     <div className="page">
       <TopBar theme={theme} toggleTheme={toggleTheme} />
-      <header className="section-header"><div className="section-numeral">Section II</div><h2 className="section-title">Projects</h2><div className="section-rule"></div></header>
-      <div className="content-block">{projectList.map((project, index) => (
-        <div key={index} className="project-card">
-          <div className="project-visual"><img src={project.img} alt={project.name} /></div>
-          <div className="project-header"><span className="project-name">{project.name}</span><a href={`https://${project.url}`} target="_blank" rel="noopener noreferrer" className="project-link">{project.url}</a></div>
-          <p className="project-description">{project.desc}</p>
-          <div className="project-tech">{project.tech.map((t, i) => (<span key={i} className="tech-tag">{t}</span>))}</div>
-        </div>
-      ))}</div>
+      <header className="section-header">
+        <div className="section-numeral">Section II</div>
+        <h2 className="section-title">Projects</h2>
+        <div className="section-rule"></div>
+      </header>
+      <div className="projects-list">
+        {projectList.map((project, index) => (
+          <div key={index} className="project-entry">
+            <div className="project-thumb">
+              {project.video ? (
+                <video
+                  src={project.video}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="project-thumb-video"
+                />
+              ) : (
+                <img src={project.img} alt={project.name} />
+              )}
+              <div className="project-thumb-overlay">
+                <p>{project.desc}</p>
+              </div>
+            </div>
+            <div className="project-meta">
+              <span className="project-meta-name">{project.name}</span>
+              <a
+                href={`https://${project.url}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="project-meta-url"
+              >
+                {project.url}
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
       <footer className="page-footer">Fin. v. XIX</footer>
     </div>
   );
 }
 
+const NinjaPortrait = () => (
+  <svg viewBox="0 0 100 128" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+    {/* Katana handle on back — rendered first so pauldron covers its base */}
+    <rect x="73" y="42" width="4" height="26" rx="2" transform="rotate(12 75 55)" />
+    {/* Tsuba (guard) */}
+    <ellipse cx="75" cy="66" rx="7" ry="2.5" transform="rotate(12 75 66)" />
+
+    {/* Kasa — wide conical hat */}
+    <path d="M50 4 L5 36 Q50 44 95 36 Z" />
+    {/* Hat brim */}
+    <rect x="2" y="34" width="96" height="6" rx="3" />
+
+    {/* Head */}
+    <ellipse cx="50" cy="56" rx="11" ry="12" />
+
+    {/* Left pauldron */}
+    <path d="M39 68 L9 64 L6 81 L23 84 L37 77 Z" />
+    {/* Right pauldron */}
+    <path d="M61 68 L91 64 L94 81 L77 84 L63 77 Z" />
+
+    {/* Torso */}
+    <path d="M37 77 L34 101 L66 101 L63 77 Q50 71 37 77 Z" />
+
+    {/* Obi sash */}
+    <rect x="32" y="101" width="36" height="7" />
+
+    {/* Hakama — wide, split at hem */}
+    <path d="M30 108 L19 128 L46 128 L50 114 L54 128 L81 128 L70 108 Z" />
+  </svg>
+);
+
 function Skills({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) {
-  const skillCategories = [
-    { title: 'Languages', icon: <Icons.Languages />, skills: ['Python', 'SQL', 'R', 'C++', 'Rust', 'Cypher Query Language'] },
-    { title: 'AI / ML', icon: <Icons.AI />, skills: ['Neural Networks', 'Fine-tuning', 'LLM', 'RAG', 'CNN', 'RNN', 'Transformers'] },
-    { title: 'Frameworks', icon: <Icons.Frameworks />, skills: ['TensorFlow', 'PyTorch', 'Keras', 'Scikit-learn', 'LangChain', 'Hugging Face', 'FastAPI'] },
-    { title: 'Data Tools', icon: <Icons.Data />, skills: ['Power BI', 'Tableau', 'RStudio', 'Excel', 'Jupyter', 'WEKA', 'Pandas'] },
-    { title: 'Databases', icon: <Icons.Databases />, skills: ['PostgreSQL', 'MySQL', 'ChromaDB', 'Vector DB', 'Data Warehouse'] },
-    { title: 'DevOps & Cloud', icon: <Icons.Cloud />, skills: ['Docker', 'Git', 'AWS', 'Azure', 'Apache HTTP Server', 'Postman'] }
+  const stats = [
+    { label: 'Intellect', value: 96 },
+    { label: 'Adaptability', value: 88 },
+    { label: 'Strength', value: 82 },
+    { label: 'Speed', value: 74 },
   ];
+
+  const skillCategories = [
+    { slot: '01', title: 'Languages', skills: ['Python', 'SQL', 'R', 'C++', 'Rust', 'Cypher Query Language'] },
+    { slot: '02', title: 'AI / ML', skills: ['Neural Networks', 'Fine-tuning', 'LLM', 'RAG', 'CNN', 'RNN', 'Transformers'] },
+    { slot: '03', title: 'Frameworks', skills: ['TensorFlow', 'PyTorch', 'Keras', 'Scikit-learn', 'LangChain', 'Hugging Face', 'FastAPI'] },
+    { slot: '04', title: 'Data Tools', skills: ['Power BI', 'Tableau', 'RStudio', 'Excel', 'Jupyter', 'WEKA', 'Pandas'] },
+    { slot: '05', title: 'Databases', skills: ['PostgreSQL', 'MySQL', 'ChromaDB', 'Vector DB', 'Data Warehouse'] },
+    { slot: '06', title: 'DevOps & Cloud', skills: ['Docker', 'Git', 'AWS', 'Azure', 'Apache HTTP Server', 'Postman'] },
+  ];
+
   return (
-    <div className="page">
+    <div className="page skills-page">
       <TopBar theme={theme} toggleTheme={toggleTheme} />
-      <header className="section-header"><div className="section-numeral">Section III</div><h2 className="section-title">Skills</h2><div className="section-rule"></div></header>
-      <div className="skills-vertical-stack">
-        {skillCategories.map((cat, index) => (
-          <div key={index} className="skill-category-block">
-            <div className="skill-category-banner">
-              <div className="skill-category-info">
-                <span className="skill-slot-label">Slot {String(index + 1).padStart(2, '0')}</span>
-                <h3 className="skill-category-name">{cat.title}</h3>
-              </div>
-              <div className="skill-category-icon">{cat.icon}</div>
-            </div>
-            <div className="skill-items-grid">
-              {cat.skills.map((skill, i) => (
-                <div key={i} className="skill-item-row">
-                  <span className="skill-arrow">›</span>
-                  <span className="skill-text">{skill}</span>
+      <header className="section-header">
+        <div className="section-numeral">Section III</div>
+        <h2 className="section-title">Skills</h2>
+        <div className="section-rule"></div>
+      </header>
+
+      <div className="character-sheet">
+        <aside className="char-panel-left">
+          <div className="char-panel-label">Warrior Profile</div>
+          <div className="char-name">Vansh Soni</div>
+          <div className="char-class">Class: AI Engineer</div>
+          <div className="char-stats">
+            {stats.map((stat) => (
+              <div key={stat.label} className="char-stat-row">
+                <div className="char-stat-label">{stat.label}</div>
+                <div className="char-stat-bar">
+                  <div className="char-stat-fill" style={{ width: `${stat.value}%` }} />
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-        ))}
+        </aside>
+
+        <main className="char-panel-right">
+          <div className="char-skills-grid">
+            {skillCategories.map((cat) => (
+              <div key={cat.slot} className="char-skill-card">
+                <div className="char-skill-card-header">
+                  <span className="char-skill-slot">Slot {cat.slot}</span>
+                  <h3 className="char-skill-title">{cat.title}</h3>
+                </div>
+                <ul className="char-skill-list">
+                  {cat.skills.map((skill) => (
+                    <li key={skill} className="char-skill-item">{skill}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </main>
       </div>
+
+      <div className="char-status-bar">
+        <span className="char-status-segment">◈ Status: Optimal</span>
+      </div>
+
       <footer className="page-footer">Fin. v. XIX</footer>
     </div>
   );
