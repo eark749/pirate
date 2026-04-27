@@ -49,7 +49,7 @@ function Home({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }
       <nav>
         {navLinks.map((link) => (
           link.external ? (
-            <a key={link.label} href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+            <a key={link.label} href="https://pub-791252e542b34b9b85d72f368c5c362f.r2.dev/vansh_soni.pdf" target="_blank" rel="noopener noreferrer">
               <span className="label">{link.label}</span>
               <span className="dots"></span>
               <span className="numeral">{link.num}</span>
