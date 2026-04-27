@@ -384,10 +384,11 @@ function ProjectThumb({ project }: { project: { name: string; img?: string; vide
 }
 
 function Projects({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) {
-  const projectList: { name: string; url: string; desc: string; img?: string; video?: string }[] = [
+  const projectList: { name: string; url: string; href?: string; desc: string; img?: string; video?: string }[] = [
     {
       name: 'Jeddy — Job Form Fillup Co-pilot',
-      url: 'github.com/eark749/jeddy',
+      url: 'github.com/eark749/job-form-copilot',
+      href: 'https://github.com/eark749/job-form-copilot',
       video: 'https://pub-791252e542b34b9b85d72f368c5c362f.r2.dev/jeddy.mp4',
       desc: 'AI co-pilot that auto-fills job application forms by reading your resume and matching it to job requirements — cutting application time from minutes to seconds.',
     },
@@ -399,13 +400,15 @@ function Projects({ theme, toggleTheme }: { theme: string; toggleTheme: () => vo
     },
     {
       name: 'LiveKit Voice Agents',
-      url: 'github.com/eark749/voice-agents',
+      url: 'test-1nv47b.sandbox.livekit.io',
+      href: 'https://test-1nv47b.sandbox.livekit.io/',
       video: 'https://pub-791252e542b34b9b85d72f368c5c362f.r2.dev/video-agent.mp4',
       desc: 'Production-grade real-time voice AI system built on WebRTC achieving sub-500ms latency using VAD + semantic turn detection, preemptive LLM generation, and optimized STT → LLM → TTS streaming pipeline.',
     },
     {
       name: 'Agent Flowchart',
-      url: 'github.com/eark749/agent-flowchart',
+      url: 'View PDF →',
+      href: 'https://pub-791252e542b34b9b85d72f368c5c362f.r2.dev/agent-chart.pdf',
       video: 'https://pub-791252e542b34b9b85d72f368c5c362f.r2.dev/agent-flowchart.mp4',
       desc: 'Visual flowchart system mapping a company\'s journey from its current phase to becoming fully AI-native — charting agent deployments, automation layers, and transformation milestones.',
     },
@@ -426,7 +429,7 @@ function Projects({ theme, toggleTheme }: { theme: string; toggleTheme: () => vo
             <div className="project-meta">
               <span className="project-meta-name">{project.name}</span>
               <a
-                href={`https://${project.url}`}
+                href={project.href ?? `https://${project.url}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="project-meta-url"

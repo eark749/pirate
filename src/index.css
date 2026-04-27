@@ -1334,7 +1334,7 @@ p,
   position: relative;
   width: 100%;
   min-height: 85vh;
-  background: url('/warrior-bg.png') no-repeat center center;
+  background: url('https://pub-791252e542b34b9b85d72f368c5c362f.r2.dev/warrior-bg.png') no-repeat center center;
   background-size: cover;
   display: flex;
   justify-content: center;
@@ -1553,7 +1553,7 @@ p,
 
 /* ── LIGHT MODE WARRIOR OVERRIDE ── */
 [data-theme='light'] .warrior-duel-container {
-  background: url('/warrior-light-bg.png') no-repeat center center;
+  background: url('https://pub-791252e542b34b9b85d72f368c5c362f.r2.dev/warrior-light-bg.png') no-repeat center center;
   background-size: cover;
 }
 
