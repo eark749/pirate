@@ -190,10 +190,10 @@ function About({ theme, toggleTheme }: { theme: string; toggleTheme: () => void 
         <div className="section-rule"></div>
       </header>
       <div className="content-block">
-        <div className="block-label">Biography</div>
+        <div className="block-label">Introduction</div>
         <div className="bio-intro">
           <div className="profile-frame">
-            <img src="/profile.png" alt="Vansh Soni" />
+            <img src="https://pub-791252e542b34b9b85d72f368c5c362f.r2.dev/samurai.jpg" alt="Vansh Soni" />
           </div>
           <div className="bio-text-primary">
             <p>

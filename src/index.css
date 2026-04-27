@@ -315,13 +315,13 @@ p,
 }
 
 .drop-cap {
-  float: left;
-  font-family: 'Hubano', serif;
-  font-size: 3.5rem;
-  line-height: 0.85;
-  margin-top: 0.15rem;
-  margin-right: 0.6rem;
+  font-family: 'Cinzel', serif;
+  font-size: 1.5em;
+  font-weight: 600;
   color: var(--ink);
+  line-height: 1;
+  display: inline;
+  margin-right: 0.05rem;
 }
 
 .highlight-text {
