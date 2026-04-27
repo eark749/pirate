@@ -2,100 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import './App.css';
 
-/**
- * Utility to get SVG-based logo for specific skills
- */
-const getSkillLogo = (name: string) => {
-  const n = name.toLowerCase().replace(/[^a-z0-9]/g, '');
-  const mapping: Record<string, string> = {
-    python: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg',
-    sql: 'https://www.svgrepo.com/show/374093/sql.svg',
-    r: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg',
-    cplusplus: 'https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg',
-    cpp: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg',
-    rust: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-original.svg',
-    cypherquerylanguage: 'https://www.svgrepo.com/show/354113/neo4j.svg',
-    tensorflow: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg',
-    pytorch: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg',
-    keras: 'https://www.svgrepo.com/show/353950/keras.svg',
-    scikitlearn: 'https://www.svgrepo.com/show/354323/scikit-learn.svg',
-    huggingface: 'https://huggingface.co/front/assets/huggingface_logo-noborder.svg',
-    fastapi: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg',
-    powerbi: 'https://www.svgrepo.com/show/354211/power-bi.svg',
-    tableau: 'https://www.svgrepo.com/show/354425/tableau.svg',
-    rstudio: 'https://www.svgrepo.com/show/354291/rstudio.svg',
-    excel: 'https://www.svgrepo.com/show/373815/excel.svg',
-    jupyter: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg',
-    pandas: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg',
-    postgresql: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
-    mysql: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
-    docker: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
-    git: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',
-    aws: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSObhWW7gEGNs1r3kbEXIeWuIDC74C6p5RVQ&s',
-    azure: 'https://www.svgrepo.com/show/353457/azure.svg',
-    apachehttpserver: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apache/apache-original.svg',
-    postman: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg',
-    chromadb: 'https://www.trychroma.com/_next/static/media/chroma-wordmark.0~1c352v-zy35.svg?dpl=dpl_GaMunTYzau8H3aiHFBDnAoLpDwXF',
-    vectordb: 'https://static.vecteezy.com/system/resources/previews/026/753/186/non_2x/database-icon-icon-for-your-website-mobile-presentation-and-logo-design-vector.jpg',
-    datawarehouse: 'https://cdn-icons-png.flaticon.com/512/2970/2970531.png'
-  };
-  return mapping[n] || 'https://www.svgrepo.com/show/422204/ai-artificial-intelligence-machine-learning.svg';
-};
-
-const Icons = {
-  Languages: () => (
-    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-      {/* The Master Dagger / Blade */}
-      <path d="M14.5 17.5L3 6V3h3l11.5 11.5" />
-      <path d="M13 19l6-6" />
-      <path d="M16 22l5-5" />
-      <circle cx="20" cy="4" r="1.5" fill="currentColor" />
-    </svg>
-  ),
-  AI: () => (
-    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-      {/* The Oracle Eye / Arcane Sigil */}
-      <circle cx="12" cy="12" r="3" />
-      <path d="M3 12c0-5 4-9 9-9s9 4 9 9-4 9-9 9-9-4-9-9z" strokeOpacity="0.3" />
-      <path d="M12 8V5M12 19v-3M8 12H5M19 12h-3" />
-      <path d="M16 8l2-2M6 18l2-2M16 16l2 2M6 6l2 2" />
-    </svg>
-  ),
-  Frameworks: () => (
-    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-      {/* The Warrior's Plate / Armor Shell */}
-      <path d="M12 2L3 7v10l9 5 9-5V7l-9-5z" />
-      <path d="M12 22V12M12 12L3 7m9 5l9-5" opacity="0.4" />
-      <path d="M7 14.5l5 2.5 5-2.5" />
-    </svg>
-  ),
-  Data: () => (
-    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-      {/* The Strategic Map / Compass */}
-      <circle cx="12" cy="12" r="10" />
-      <path d="M16.2 7.8l-2.2 6.4-6.4 2.2 2.2-6.4 6.4-2.2z" />
-      <path d="M12 2v2M12 20v2M2 12h2M20 12h2" strokeOpacity="0.5" />
-    </svg>
-  ),
-  Databases: () => (
-    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-      {/* The Great Archives / Stone Tome */}
-      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-      <path d="M8 6h8M8 10h8M8 14h4" opacity="0.4" />
-    </svg>
-  ),
-  Cloud: () => (
-    <svg className="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-      {/* The War Beacon / Signal Tower */}
-      <path d="M12 2v8" />
-      <path d="M5 12l7-7 7 7" />
-      <path d="M2 17h20" />
-      <path d="M2 21h20" strokeOpacity="0.4" />
-      <circle cx="12" cy="2" r="1" fill="currentColor" />
-    </svg>
-  )
-};
 
 function TopBar({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) {
   return (
@@ -447,36 +353,6 @@ function Projects({ theme, toggleTheme }: { theme: string; toggleTheme: () => vo
   );
 }
 
-const NinjaPortrait = () => (
-  <svg viewBox="0 0 100 128" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-    {/* Katana handle on back — rendered first so pauldron covers its base */}
-    <rect x="73" y="42" width="4" height="26" rx="2" transform="rotate(12 75 55)" />
-    {/* Tsuba (guard) */}
-    <ellipse cx="75" cy="66" rx="7" ry="2.5" transform="rotate(12 75 66)" />
-
-    {/* Kasa — wide conical hat */}
-    <path d="M50 4 L5 36 Q50 44 95 36 Z" />
-    {/* Hat brim */}
-    <rect x="2" y="34" width="96" height="6" rx="3" />
-
-    {/* Head */}
-    <ellipse cx="50" cy="56" rx="11" ry="12" />
-
-    {/* Left pauldron */}
-    <path d="M39 68 L9 64 L6 81 L23 84 L37 77 Z" />
-    {/* Right pauldron */}
-    <path d="M61 68 L91 64 L94 81 L77 84 L63 77 Z" />
-
-    {/* Torso */}
-    <path d="M37 77 L34 101 L66 101 L63 77 Q50 71 37 77 Z" />
-
-    {/* Obi sash */}
-    <rect x="32" y="101" width="36" height="7" />
-
-    {/* Hakama — wide, split at hem */}
-    <path d="M30 108 L19 128 L46 128 L50 114 L54 128 L81 128 L70 108 Z" />
-  </svg>
-);
 
 function Skills({ theme, toggleTheme }: { theme: string; toggleTheme: () => void }) {
   const stats = [
