@@ -375,7 +375,7 @@ function ProjectThumb({ project }: { project: { name: string; img?: string; vide
   return (
     <div className="project-thumb" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       {project.video ? (
-        <video ref={videoRef} src={project.video} muted loop playsInline preload="metadata" className="project-thumb-video" />
+        <video ref={videoRef} src={project.video} muted loop playsInline preload="metadata" className="project-thumb-video" onContextMenu={(e) => e.preventDefault()} controlsList="nodownload nofullscreen" disablePictureInPicture />
       ) : (
         <img src={project.img} alt={project.name} />
       )}
@@ -402,6 +402,12 @@ function Projects({ theme, toggleTheme }: { theme: string; toggleTheme: () => vo
       url: 'github.com/eark749/voice-agents',
       video: 'https://pub-791252e542b34b9b85d72f368c5c362f.r2.dev/video-agent.mp4',
       desc: 'Production-grade real-time voice AI system built on WebRTC achieving sub-500ms latency using VAD + semantic turn detection, preemptive LLM generation, and optimized STT → LLM → TTS streaming pipeline.',
+    },
+    {
+      name: 'Agent Flowchart',
+      url: 'github.com/eark749/agent-flowchart',
+      video: 'https://pub-791252e542b34b9b85d72f368c5c362f.r2.dev/agent-flowchart.mp4',
+      desc: 'Visual flowchart system mapping a company\'s journey from its current phase to becoming fully AI-native — charting agent deployments, automation layers, and transformation milestones.',
     },
   ];
 
